@@ -65,7 +65,14 @@ export const PartnerTypeService = {
 
 // Purchase Opportunity
 export const PurchaseOpportunityService = {
-  getAll() {
+  getAll(params) {
+    if (params) {
+      return client
+        .get(`${PURCHASE_OPPORTUNITY_RESOURCE}`, { params })
+        .catch((error) => {
+          throw new Error(`PurchaseOpportunityService ${error}`);
+        });
+    }
     return client.get(`${PURCHASE_OPPORTUNITY_RESOURCE}`).catch((error) => {
       throw new Error(`PurchaseOpportunityService ${error}`);
     });

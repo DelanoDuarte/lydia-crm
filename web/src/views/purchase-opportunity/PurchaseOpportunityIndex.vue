@@ -1,6 +1,10 @@
 <template>
   <div class="row">
-    <purchase-opportunity-filters :purchase_opportunity_status="all_status" />
+    <purchase-opportunity-filters
+      :purchase_opportunity_status="all_status"
+      v-on:filter-purchase-opportunity="onFilterChanged($event)"
+      v-on:clear-filters="load()"
+    />
 
     <div class="col-md-10">
       <div class="row">
@@ -63,6 +67,13 @@ export default {
         name: "purchase-opportunity-details",
         params: { id: po_id },
       });
+    },
+
+    onFilterChanged(status) {
+      const params = { status: status };
+      PurchaseOpportunityService.getAll(params).then(
+        (po) => (this.purchase_opps = po.data)
+      );
     },
   },
 };

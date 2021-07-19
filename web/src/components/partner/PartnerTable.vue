@@ -10,7 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="partner in partners" v-bind:key="partner.id">
+      <tr
+        class="table-row"
+        v-for="partner in partners"
+        v-bind:key="partner.id"
+        @dblclick="$emit('on-row-selected', partner.id)"
+      >
         <td>{{ partner.firstName }}</td>
         <td>{{ partner.lastName }}</td>
         <td>{{ partner.email }}</td>
@@ -33,9 +38,13 @@ export default {
       type: Array,
       default: [],
     },
+    methods: {},
   },
 };
 </script>
 
-<style>
+<style scoped>
+.table-row {
+  cursor: pointer;
+}
 </style>

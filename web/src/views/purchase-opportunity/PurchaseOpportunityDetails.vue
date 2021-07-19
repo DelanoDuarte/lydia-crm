@@ -7,8 +7,19 @@
         </template>
         <template #content>
           <div class="row d-grid gap-2 p-2">
-            <button class="btn btn-success" type="button">Convert</button>
-            <button class="btn btn-outline-danger" type="button">Delete</button>
+            <button class="btn btn-success btn-sm" type="button">
+              Convert
+            </button>
+            <button class="btn btn-outline-danger btn-sm" type="button">
+              Delete
+            </button>
+            <button
+              class="btn btn-outline-warning btn-sm"
+              type="button"
+              @click="$router.push({ name: 'purchase-opportunity-index' })"
+            >
+              Go Back
+            </button>
           </div>
         </template>
       </simple-card>
