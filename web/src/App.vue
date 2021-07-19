@@ -1,0 +1,40 @@
+<template>
+  <div>
+    <nav-bar />
+    <main class="container-fluid">
+      <div class="content">
+        <router-view />
+      </div>
+    </main>
+  </div>
+</template>
+
+<script>
+import NavBar from "@/components/navigation/NavBar.vue";
+export default {
+  components: { NavBar },
+  mounted() {
+    document.title = "Home | Lydia";
+    document
+      .querySelector("body")
+      .setAttribute("style", "background-color:#f4f3ef");
+  },
+};
+</script>
+
+<style lang="scss">
+body {
+  background-color: #f4f3ef;
+  color: #2c2c2c;
+  font-size: 14px;
+  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+.content {
+  padding-top: 90px;
+}
+
+.table {
+  border-spacing: 2px;
+  border-color: gray !important;
+}
+</style>
