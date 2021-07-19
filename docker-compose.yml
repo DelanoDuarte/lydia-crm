@@ -1,0 +1,28 @@
+version: '3.6'
+
+services:
+  lydia:
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    command: /start.sh
+    environment:
+      POSTGRES_NAME: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_HOST: db
+    volumes:
+      - .:/app
+    ports:
+      - "8002:8000"
+
+  lydia-web:
+    build:
+      context: .
+      dockerfile: deployment/DockerfileWeb
+    volumes:
+      - .:/app
+    working_dir: /app/web
+    restart: on-failure
+    ports:
+      - "8080:8080"
