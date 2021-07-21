@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 
 import { partner_routes } from "../views/partner/routes";
 import { purchase_opportunity_routes } from "../views/purchase-opportunity/routes";
+import { product_categories_routes } from "../views/product-category/routes";
 
 import PurchaseIndex from "@/views/purchase/PurchaseIndex.vue";
 import ProductCatalog from "@/views/product-catalog/ProductCatalog.vue";
@@ -43,6 +44,7 @@ const routes = [
   ...purchase_opportunity_routes,
   ...product_routes,
   ...purchase_opportunity_routes,
+  ...product_categories_routes,
 ];
 
 const router = createRouter({

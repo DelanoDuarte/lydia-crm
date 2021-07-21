@@ -1,6 +1,7 @@
 from enum import Enum
 from product.models import Product
 from django.db import models
+from django.core.validators import MaxLengthValidator, MinLengthValidator
 
 from partner.models import Partner
 
@@ -25,7 +26,7 @@ class PurchaseOpportunity(models.Model):
 
     code = models.CharField(max_length=128)
     expectedEndingDate = models.DateTimeField(null=False)
-    priority = models.IntegerField(null=False)
+    priority = models.IntegerField(null=False, default=1)
     status = models.CharField(choices=PurchaseOpportunityStatus.choices(), max_length=128, default=PurchaseOpportunityStatus.NEW.__str__)
     comments = models.TextField(max_length=2048)
     createdAt = models.DateTimeField(auto_now_add=True)

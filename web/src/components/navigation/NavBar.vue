@@ -63,7 +63,13 @@
               >Configuration</a
             >
             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-              <li><a class="dropdown-item" href="#">Product Category</a></li>
+              <li>
+                <router-link
+                  class="dropdown-item"
+                  :to="{ name: 'product-category-index' }"
+                  >Product Category</router-link
+                >
+              </li>
               <li>
                 <router-link class="dropdown-item" to="/about"
                   >Partner Types</router-link

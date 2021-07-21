@@ -1,7 +1,7 @@
 <template>
   <div class="p-3 mb-3 bg-body rounded shadow">
     <slot name="header" class="card-header"></slot>
-    <h4 class="border-bottom p-2 mb-0">{{ title }}</h4>
+    <h5 class="border-bottom p-2 mb-0">{{ title }}</h5>
     <slot name="content" class="card-content"></slot>
   </div>
 </template>

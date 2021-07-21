@@ -20,26 +20,17 @@
         </div>
       </div>
 
+      <div class="row pb-3">
+        <div class="col-md-6 float-end">
+          <button class="btn btn-success btn-sm">New</button>
+        </div>
+      </div>
+
       <simple-card>
         <template v-slot:header>
           <h4>Partners</h4>
         </template>
         <template v-slot:content>
-          <div class="nav-scroller shadow-sm">
-            <nav
-              class="
-                nav nav-underline
-                d-grid
-                gap-2
-                d-md-flex
-                justify-content-md-end
-              "
-              aria-label="Secondary navigation"
-            >
-              <a class="nav-link">New</a>
-            </nav>
-          </div>
-
           <partner-table :partners="partners_data" />
         </template>
       </simple-card>

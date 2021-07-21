@@ -17,7 +17,7 @@
         class="clickable-row"
       >
         <td>
-          {{ po.status }}
+          <span class="badge bg-success">{{ po.status }}</span>
         </td>
         <td>{{ po.partner.full_name }}</td>
         <td>{{ po.priority }}</td>

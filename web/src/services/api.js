@@ -2,7 +2,7 @@ import axios from "axios";
 
 const PARTNER_TYPE_RESOURCE = "/partner-type/";
 const PARTNER_RESOURCE = "/partner/";
-const PRODUCT_CATEGORY_RESOURCE = "/product-category";
+const PRODUCT_CATEGORY_RESOURCE = "/product-category/";
 const PURCHASE_OPPORTUNITY_RESOURCE = "/purchase-opportunity/";
 
 export const client = axios.create({
