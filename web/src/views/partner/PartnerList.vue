@@ -21,8 +21,12 @@
       </div>
 
       <div class="row pb-3">
-        <div class="col-md-6 float-end">
-          <button class="btn btn-success btn-sm">New</button>
+        <div class="col-md-12">
+          <router-link
+            class="btn btn-success btn-sm float-end"
+            :to="{ name: 'partner-create' }"
+            >NEW</router-link
+          >
         </div>
       </div>
 

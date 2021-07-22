@@ -2,8 +2,7 @@
   <table class="table table-hover">
     <thead class="text-secondary">
       <tr>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
+        <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">BirthDate</th>
         <th scope="col">Partner Type</th>
@@ -16,8 +15,7 @@
         v-bind:key="partner.id"
         @dblclick="$emit('on-row-selected', partner.id)"
       >
-        <td>{{ partner.firstName }}</td>
-        <td>{{ partner.lastName }}</td>
+        <td>{{ partner.full_name }}</td>
         <td>{{ partner.email }}</td>
         <td v-if="partner.birthDate">{{ partner.birthDate }}</td>
         <td v-else>*Not Provided</td>

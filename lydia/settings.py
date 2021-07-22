@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'purchase.apps.PurchaseConfig',
     'partner_type.apps.PartnerTypeConfig',
-    'purchase_opportunity.apps.PurchaseOpportunityConfig'
+    'purchase_opportunity.apps.PurchaseOpportunityConfig',
+    'address.apps.AddressConfig'
 ]
 
 CORS_ALLOWED_ORIGINS = [

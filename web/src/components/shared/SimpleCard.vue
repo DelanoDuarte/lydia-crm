@@ -2,7 +2,7 @@
   <div class="p-3 mb-3 bg-body rounded shadow">
     <slot name="header" class="card-header"></slot>
     <h5 class="border-bottom p-2 mb-0">{{ title }}</h5>
-    <slot name="content" class="card-content"></slot>
+    <slot name="content" class="card-content mt-3"></slot>
   </div>
 </template>
 

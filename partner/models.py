@@ -11,6 +11,7 @@ class Partner(models.Model):
     mobile = models.CharField(max_length=64, null=True)
     phone = models.CharField(max_length=64, null=True)
     email = models.CharField(max_length=128)
+    website = models.CharField(max_length=512, null=True)
     firstContactDate = models.DateTimeField(null=True)
     comments = models.CharField(max_length=2048, null=True)
 
