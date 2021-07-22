@@ -37,4 +37,15 @@ body {
   border-spacing: 2px;
   border-color: gray !important;
 }
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #525f7f;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
 </style>
