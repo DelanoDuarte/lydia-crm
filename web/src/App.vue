@@ -3,7 +3,7 @@
     <nav-bar />
     <main class="container-fluid">
       <div class="content">
-        <router-view />
+        <router-view class="animate__animated animate__fadeIn" />
       </div>
     </main>
   </div>

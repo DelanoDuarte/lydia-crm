@@ -46,6 +46,12 @@ export const PartnerService = {
         throw new Error(`PartnerService ${error}`);
       });
   },
+
+  create(partner) {
+    return client.post(`${PARTNER_RESOURCE}`, partner).catch((error) => {
+      throw new Error(`PartnerService ${error}`);
+    });
+  },
 };
 
 // Partner Types
