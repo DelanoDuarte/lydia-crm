@@ -5,7 +5,7 @@
         <simple-card title="Basic Info">
           <template #content>
             <div class="row g-3 p-2">
-              <div class="col-8">
+              <div class="col-5">
                 <label for="inputFirstName" class="form-label"
                   >First Name</label
                 >
@@ -16,7 +16,18 @@
                   id="inputFirstName"
                 />
               </div>
-              <div class="col-md-4">
+
+              <div class="col-5">
+                <label for="inputLastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="inputLastName"
+                  v-model="partner.lastName"
+                />
+              </div>
+
+              <div class="col-md-2">
                 <label for="inputPartnerType" class="form-label"
                   >Partner Type</label
                 >
@@ -36,17 +47,7 @@
                 </select>
               </div>
             </div>
-            <div class="row g-3 p-2">
-              <div class="col-10">
-                <label for="inputLastName" class="form-label">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                  id="inputLastName"
-                  v-model="partner.lastName"
-                />
-              </div>
-            </div>
+            <div class="row g-3 p-2"></div>
             <div class="row g-3 p-2">
               <div class="col-4">
                 <label for="inputBirthDate" class="form-label">BirthDate</label>
@@ -89,6 +90,17 @@
                   class="form-control form-control-sm"
                   id="inputMobile"
                   v-model="partner.mobile"
+                />
+              </div>
+            </div>
+
+            <div class="row g-3 p-2">
+              <div class="col-12">
+                <label for="inputComments" class="form-label">Comments</label>
+                <textarea
+                  class="form-control form-control-sm"
+                  id="inputComments"
+                  v-model="partner.comments"
                 />
               </div>
             </div>

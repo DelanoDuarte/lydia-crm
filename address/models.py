@@ -14,4 +14,4 @@ class Address(models.Model):
     state = models.CharField(max_length=256, null=False)
     city = models.CharField(max_length=50, null=False)
 
-    country = models.ForeignKey(Country, on_delete=models.PROTECT)
+    country = models.ForeignKey(Country, on_delete=models.PROTECT, null=True)

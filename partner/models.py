@@ -1,4 +1,5 @@
 from partner_type.models import PartnerType
+from address.models import Address
 from django.db import models
 
 # Create your models here.
@@ -16,6 +17,7 @@ class Partner(models.Model):
     comments = models.CharField(max_length=2048, null=True)
 
     partnerType = models.ForeignKey(PartnerType, on_delete=models.PROTECT)
+    address = models.ForeignKey(Address, on_delete=models.PROTECT, null=False)
 
     slug = models.SlugField(null=True)
 

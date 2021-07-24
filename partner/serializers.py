@@ -1,3 +1,5 @@
+from address.models import Address
+from address.serializers import AddressSerializer, AddressSerializerDetails
 from partner_type.models import PartnerType
 from partner_type.serializers import PartnerTypeSerializer
 from rest_framework import serializers
@@ -22,13 +24,20 @@ class PartnerSerializer(serializers.Serializer):
     get_absolute_url = serializers.CharField(read_only=True,)
 
     partnerType = serializers.PrimaryKeyRelatedField(queryset=PartnerType.objects)
+    address = AddressSerializer()
 
     def create(self, validated_data):
+        address_data = validated_data.pop('address')
+        if address_data:
+            address = Address.objects.create(**address_data)
+            return Partner.objects.create(address=address, **validated_data)
+
         return Partner.objects.create(**validated_data)
 
 class PartnerListSerializer(serializers.ModelSerializer):
 
     partnerType = PartnerTypeSerializer()
+    address = AddressSerializerDetails()
 
     class Meta:
         model = Partner
@@ -44,5 +53,6 @@ class PartnerListSerializer(serializers.ModelSerializer):
             'firstContactDate',
             'comments',
             'full_name',
-            'partnerType'
+            'partnerType',
+            'address'
         )
