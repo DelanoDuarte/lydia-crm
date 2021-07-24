@@ -152,12 +152,23 @@
                 />
               </div>
             </div>
-            <div class="col-md-10 g-3 p-2">
-              <label for="inputCountry" class="form-label">Country</label>
-              <select id="inputCountry" class="form-select form-select-sm">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
+            <div class="row g-3 p-2">
+              <div class="col-md-5">
+                <label for="inputState" class="form-label">State</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="inputState"
+                  v-model="partner.address.state"
+                />
+              </div>
+              <div class="col-md-5">
+                <label for="inputCountry" class="form-label">Country</label>
+                <select id="inputCountry" class="form-select form-select-sm">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
             </div>
           </template>
         </simple-card>
@@ -187,6 +198,7 @@ export default {
           mainAddress: undefined,
           additionalAddress: undefined,
           city: undefined,
+          state: undefined,
           zip: undefined,
         },
       },
