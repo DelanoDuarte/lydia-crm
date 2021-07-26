@@ -1,8 +1,12 @@
 <template>
   <div class="p-3 mb-3 bg-body rounded shadow">
-    <slot name="header" class="card-header"></slot>
+    <div>
+      <slot name="header"></slot>
+    </div>
     <h5 class="border-bottom p-2 mb-0">{{ title }}</h5>
-    <slot name="content" class="card-content"></slot>
+    <div class="card-content">
+      <slot name="content"></slot>
+    </div>
   </div>
 </template>
 
@@ -16,6 +20,6 @@ export default {
 
 <style scoped>
 .card-content {
-  margin-bottom: 20px;
+  padding: 5px;
 }
 </style>

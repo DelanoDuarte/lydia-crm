@@ -1,3 +1,12 @@
+# Running
+
+### Execute Django Migrations
+python manage.py makemigrations
+python manage.py migrate
+
+### Running
+python manage.py runserver
+
 # web
 
 ## Project setup

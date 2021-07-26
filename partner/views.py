@@ -1,5 +1,5 @@
 from partner.serializers import PartnerListSerializer, PartnerSerializer
-from partner.models import Partner
+from partner.models import Gender, Partner
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
 from django.shortcuts import render
@@ -35,3 +35,7 @@ def by_partner_type(request: HttpRequest, partner_type_id: int):
         return JsonResponse(serializer.data, safe=False)
 
     return JsonResponse(serializer.errors, status=400)
+
+def genders(request: HttpRequest):
+    genders =  Gender.values()
+    return JsonResponse(list(genders), safe=False)

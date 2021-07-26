@@ -33,6 +33,12 @@ export const PartnerService = {
     });
   },
 
+  genders() {
+    return client.get(`${PARTNER_RESOURCE}genders`).catch((error) => {
+      throw new Error(`PartnerService ${error}`);
+    });
+  },
+
   byId(id) {
     return client.get(`${PARTNER_RESOURCE}/${id}`).catch((error) => {
       throw new Error(`PartnerService ${error}`);
@@ -45,6 +51,12 @@ export const PartnerService = {
       .catch((error) => {
         throw new Error(`PartnerService ${error}`);
       });
+  },
+
+  create(partner) {
+    return client.post(`${PARTNER_RESOURCE}`, partner).catch((error) => {
+      throw new Error(`PartnerService ${error}`);
+    });
   },
 };
 

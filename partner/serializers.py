@@ -1,8 +1,10 @@
+from address.models import Address
+from address.serializers import AddressSerializer, AddressSerializerDetails
 from partner_type.models import PartnerType
 from partner_type.serializers import PartnerTypeSerializer
 from rest_framework import serializers
 
-from partner.models import Partner
+from partner.models import Gender, Partner
 
 
 class PartnerSerializer(serializers.Serializer):
@@ -10,6 +12,7 @@ class PartnerSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     firstName = serializers.CharField(max_length=256)
     lastName = serializers.CharField(max_length=256)
+    gender = serializers.ChoiceField(choices=Gender.choices(), required=True)
     birthDate = serializers.DateField(required=False)
     age = serializers.IntegerField(required=False)
     mobile = serializers.CharField(max_length=64, required=False)
@@ -22,13 +25,20 @@ class PartnerSerializer(serializers.Serializer):
     get_absolute_url = serializers.CharField(read_only=True,)
 
     partnerType = serializers.PrimaryKeyRelatedField(queryset=PartnerType.objects)
+    address = AddressSerializer()
 
     def create(self, validated_data):
+        address_data = validated_data.pop('address')
+        if address_data:
+            address = Address.objects.create(**address_data)
+            return Partner.objects.create(address=address, **validated_data)
+
         return Partner.objects.create(**validated_data)
 
 class PartnerListSerializer(serializers.ModelSerializer):
 
     partnerType = PartnerTypeSerializer()
+    address = AddressSerializerDetails()
 
     class Meta:
         model = Partner
@@ -36,6 +46,7 @@ class PartnerListSerializer(serializers.ModelSerializer):
             'id',
             'firstName',
             'lastName',
+            'gender',
             'birthDate',
             'age',
             'mobile',
@@ -44,5 +55,6 @@ class PartnerListSerializer(serializers.ModelSerializer):
             'firstContactDate',
             'comments',
             'full_name',
-            'partnerType'
+            'partnerType',
+            'address'
         )
