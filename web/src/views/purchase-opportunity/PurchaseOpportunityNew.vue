@@ -11,10 +11,7 @@
         </button>
       </div>
     </div>
-    <div class="col-md-12">
-      <!-- <partner-form ref="partnerForm" /> -->
-      <purchase-opportunity-create-form />
-    </div>
+    <purchase-opportunity-create-form />
   </div>
 </template>
 
