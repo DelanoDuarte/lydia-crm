@@ -1,33 +1,58 @@
 # Running
 
-### Execute Django Migrations
+## Running separated environments
+
+### Setup 
+```
+python install -r requirements.txt
+```
+
+#### Execute Django Migrations
+```
 python manage.py makemigrations
+
 python manage.py migrate
+```
 
-### Running
+#### Run Local Server
+```
 python manage.py runserver
+```
 
-# web
+### Web
 
-## Project setup
+#### Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Run your unit tests
+#### Run your unit tests
 ```
 npm run test:unit
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Running with Docker
+
+#### Build Image
+```
+docker-compose build
+```
+
+#### Start Container
+```
+docker-compose up
+```
+
+#### Testing on Browser
+
+http://127.0.0.1:8080
