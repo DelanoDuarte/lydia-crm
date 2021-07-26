@@ -1,9 +1,8 @@
 <template>
-  <div class="col-md-2">
-    <simple-card>
-      <template v-slot:header>
-        <h4>Filters</h4>
-        <div class="row p-2">
+  <simple-card title="Actions">
+    <template #header>
+      <div class="p-2">
+        <div class="row g-3 p-2">
           <select
             id="purchaseOppsOptions"
             class="form-select"
@@ -21,20 +20,25 @@
           </select>
         </div>
         <div class="row d-grid gap-2 p-2">
-          <button class="btn btn-success" type="button">
+          <router-link
+            class="btn btn-success btn-sm"
+            :to="{ name: 'purchase-opportunity-create' }"
+            >New Opportunity</router-link
+          >
+          <button class="btn btn-secondary btn-sm" type="button">
             Advanced Filters
           </button>
           <button
-            class="btn btn-outline-danger"
+            class="btn btn-outline-danger btn-sm"
             type="button"
             @click="$emit('clear-filters')"
           >
             Clear Filters
           </button>
         </div>
-      </template>
-    </simple-card>
-  </div>
+      </div>
+    </template>
+  </simple-card>
 </template>
 
 <script>

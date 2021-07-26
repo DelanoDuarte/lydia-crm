@@ -1,7 +1,6 @@
 <template>
-  <simple-card>
-    <template v-slot:header>
-      <h4>Filters</h4>
+  <simple-card title="Actions">
+    <template #header>
       <div class="row p-2">
         <select
           id="partnerTypeSelect"
@@ -20,9 +19,16 @@
         </select>
       </div>
       <div class="row d-grid gap-2 p-2">
-        <button class="btn btn-success" type="button">Advanced Filters</button>
+        <router-link
+          class="btn btn-success btn-sm"
+          :to="{ name: 'partner-create' }"
+          >New Partner</router-link
+        >
+        <button class="btn btn-secondary btn-sm" type="button">
+          Advanced Filters
+        </button>
         <button
-          class="btn btn-outline-danger"
+          class="btn btn-outline-danger btn-sm"
           type="button"
           @click="$emit('clear-filters')"
         >
