@@ -1,12 +1,28 @@
+from enum import Enum
 from partner_type.models import PartnerType
 from address.models import Address
 from django.db import models
 
 # Create your models here.
+class Gender(Enum):
+    MR = "MR"
+    MRS = "MRS"
+    MS = "MS"
+    UNDEFINED = "UNDEFINED" 
+
+    @classmethod
+    def choices(cls):
+        return tuple((i.name, i.value) for i in cls)
+
+    @classmethod
+    def values(cls):
+        return list((i.value) for i in cls)
+
 class Partner(models.Model):
 
     firstName = models.CharField(max_length=256, null=False)
     lastName = models.CharField(max_length=256, null=False)
+    gender = models.CharField(choices=Gender.choices(), max_length=128, default=Gender.UNDEFINED.value)
     birthDate = models.DateField(null=True)
     age = models.IntegerField(null=True)
     mobile = models.CharField(max_length=64, null=True)

@@ -4,7 +4,7 @@ from partner_type.models import PartnerType
 from partner_type.serializers import PartnerTypeSerializer
 from rest_framework import serializers
 
-from partner.models import Partner
+from partner.models import Gender, Partner
 
 
 class PartnerSerializer(serializers.Serializer):
@@ -12,6 +12,7 @@ class PartnerSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     firstName = serializers.CharField(max_length=256)
     lastName = serializers.CharField(max_length=256)
+    gender = serializers.ChoiceField(choices=Gender.choices(), required=True)
     birthDate = serializers.DateField(required=False)
     age = serializers.IntegerField(required=False)
     mobile = serializers.CharField(max_length=64, required=False)
@@ -45,6 +46,7 @@ class PartnerListSerializer(serializers.ModelSerializer):
             'id',
             'firstName',
             'lastName',
+            'gender',
             'birthDate',
             'age',
             'mobile',

@@ -5,11 +5,12 @@
         <simple-card title="Basic Info">
           <template #content>
             <div class="row g-3 p-2">
-              <div class="col-5">
+              <div class="col-6">
                 <label for="inputFirstName" class="form-label"
                   >First Name</label
                 >
                 <input
+                  required
                   type="text"
                   class="form-control form-control-sm"
                   v-model="partner.firstName"
@@ -17,21 +18,43 @@
                 />
               </div>
 
-              <div class="col-5">
+              <div class="col-6">
                 <label for="inputLastName" class="form-label">Last Name</label>
                 <input
+                  required
                   type="text"
                   class="form-control form-control-sm"
                   id="inputLastName"
                   v-model="partner.lastName"
                 />
               </div>
-
-              <div class="col-md-2">
+            </div>
+            <div class="row g-3 p-2">
+              <div class="col-md-3">
+                <label for="inputPartnerGender" class="form-label"
+                  >Gender</label
+                >
+                <select
+                  required
+                  id="inputPartnerGender"
+                  class="form-select form-select-sm"
+                  v-model="partner.gender"
+                >
+                  <option
+                    v-for="gender in genders"
+                    :key="gender"
+                    :value="gender"
+                  >
+                    {{ gender }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-3">
                 <label for="inputPartnerType" class="form-label"
                   >Partner Type</label
                 >
                 <select
+                  required
                   id="inputPartnerType"
                   class="form-select form-select-sm"
                   v-model="partner.partnerType"
@@ -47,11 +70,11 @@
                 </select>
               </div>
             </div>
-            <div class="row g-3 p-2"></div>
             <div class="row g-3 p-2">
               <div class="col-4">
                 <label for="inputBirthDate" class="form-label">BirthDate</label>
                 <input
+                  required
                   type="date"
                   class="form-control form-control-sm"
                   id="inputBirthDate"
@@ -62,6 +85,7 @@
               <div class="col-8">
                 <label for="inputEmail" class="form-label">Email</label>
                 <input
+                  required
                   type="email"
                   class="form-control form-control-sm"
                   id="inputEmail"
@@ -178,16 +202,18 @@
 </template>
 
 <script>
-import { PartnerTypeService } from "../../services/api";
+import { PartnerService, PartnerTypeService } from "../../services/api";
 import SimpleCard from "../shared/SimpleCard.vue";
 export default {
   components: { SimpleCard },
   data() {
     return {
       partnerTypes: [],
+      genders: [],
       partner: {
         firstName: undefined,
         lastName: undefined,
+        gender: undefined,
         birthDate: undefined,
         mobile: undefined,
         phone: undefined,
@@ -210,8 +236,11 @@ export default {
   methods: {
     load() {
       PartnerTypeService.getAll().then(
-        (types) => (this.partnerTypes = types.data)
+        (response) => (this.partnerTypes = response.data)
       );
+      PartnerService.genders().then((response) => {
+        this.genders = response.data;
+      });
     },
   },
 };
