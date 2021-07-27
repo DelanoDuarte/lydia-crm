@@ -1,12 +1,10 @@
 from enum import Enum
-from product.models import Product
 from django.db import models
-from django.core.validators import MaxLengthValidator, MinLengthValidator
-
 from partner.models import Partner
+from product.models import Product
+from purchase.models import Purchase
 
 # Create your models here.
-
 class PurchaseOpportunityStatus(Enum):
     NEW = "NEW"
     INTERESTED = "INTERESTED"
@@ -34,3 +32,21 @@ class PurchaseOpportunity(models.Model):
     # relationship
     partner = models.ForeignKey(Partner, on_delete=models.PROTECT)
     products = models.ManyToManyField(Product)
+
+    def convert_to_purchase(self, id: int):
+
+        # Update actual Opportunity
+        opportunity = self.objects.get(id=id)
+        opportunity.status = PurchaseOpportunityStatus.CONVERTED
+        opportunity.save()
+
+        # Create Purchase based on Opportunity
+        purchase = Purchase(
+            partner=opportunity.partner,
+            products=opportunity.products,
+            comments=opportunity.comments,
+            opportunity=opportunity
+        )
+        purchase.save()
+
+        return opportunity

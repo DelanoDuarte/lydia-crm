@@ -43,7 +43,7 @@
       <simple-card title="Partner">
         <template #content>
           <div class="text-center pt-3">
-            <button class="btn btn-success btn-md">Search</button>
+            <button class="btn btn-success btn-md">Select / Search</button>
           </div>
         </template>
       </simple-card>

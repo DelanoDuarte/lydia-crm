@@ -7,6 +7,7 @@
         <th scope="col">Email</th>
         <th scope="col">BirthDate</th>
         <th scope="col">Partner Type</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
           <span class="badge rounded-pill bg-success">
             {{ partner.partnerType.name }}
           </span>
+        </td>
+        <td>
+          <font-awesome-icon icon="ellipsis-v" size="lg" />
         </td>
       </tr>
     </tbody>
