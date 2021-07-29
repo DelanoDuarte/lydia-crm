@@ -4,7 +4,7 @@
       <div class="row p-2">
         <select
           id="partnerTypeSelect"
-          class="form-select"
+          class="form-control"
           aria-label="Default select example"
           @change="$emit('filter-partner', $event.target.value)"
         >
@@ -20,15 +20,15 @@
       </div>
       <div class="row d-grid gap-2 p-2">
         <router-link
-          class="btn btn-success btn-sm"
+          class="btn btn-success btn-sm btn-block"
           :to="{ name: 'partner-create' }"
           >New Partner</router-link
         >
-        <button class="btn btn-secondary btn-sm" type="button">
+        <button class="btn btn-secondary btn-sm btn-block" type="button">
           Advanced Filters
         </button>
         <button
-          class="btn btn-outline-danger btn-sm"
+          class="btn btn-outline-danger btn-sm btn-block"
           type="button"
           @click="$emit('clear-filters')"
         >

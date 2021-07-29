@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-5 col-md-4">
           <div class="icon-big text-center icon-warning">
-            <font-awesome-icon :icon="['far', 'user-circle']" />
+            <font-awesome-icon icon="user-circle" />
           </div>
         </div>
         <div class="col-7 col-md-8">

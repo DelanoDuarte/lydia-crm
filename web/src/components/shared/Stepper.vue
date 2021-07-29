@@ -15,10 +15,7 @@
 <script>
 export default {
   props: {
-    steps: {
-      type: Array,
-      default: [],
-    },
+    steps: [],
     active_step: {
       type: String,
       default: "",

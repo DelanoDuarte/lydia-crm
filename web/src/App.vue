@@ -22,11 +22,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 body {
   background-color: #f4f3ef;
   color: #2c2c2c;
-  font-size: 14px;
+  font-size: 14px !important;
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
 .content {
@@ -47,5 +47,9 @@ body {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+}
+
+.modal-backdrop {
+  opacity: 0.5 !important;
 }
 </style>

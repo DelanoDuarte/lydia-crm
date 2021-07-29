@@ -6,7 +6,7 @@
       </div>
 
       <div class="col-md-6">
-        <button @click="create()" class="btn btn-success btn-md float-end">
+        <button @click="create()" class="btn btn-success btn-md float-right">
           Create Purchase
         </button>
       </div>

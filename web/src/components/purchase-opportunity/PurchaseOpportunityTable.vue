@@ -39,10 +39,7 @@
 <script>
 export default {
   props: {
-    purchase_opportunities: {
-      type: Array,
-      default: [],
-    },
+    purchase_opportunities: [],
   },
 };
 </script>

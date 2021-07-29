@@ -32,7 +32,7 @@
           </span>
         </td>
         <td>
-          <font-awesome-icon icon="ellipsis-v" size="lg" />
+          <font-awesome-icon icon="ellipsis-v" size="sm" />
         </td>
       </tr>
     </tbody>

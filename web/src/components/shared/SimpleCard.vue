@@ -1,5 +1,5 @@
 <template>
-  <div class="p-3 mb-3 bg-body rounded shadow">
+  <div class="card p-3 mb-3 bg-body rounded shadow">
     <h5 class="border-bottom p-2 mb-0">{{ title }}</h5>
 
     <slot name="header"></slot>
@@ -18,6 +18,9 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  background-color: #fff;
+}
 .card-content {
   padding: 5px;
 }
