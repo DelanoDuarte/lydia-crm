@@ -43,14 +43,8 @@
 import SimpleCard from "../shared/SimpleCard.vue";
 export default {
   components: { SimpleCard },
-  data() {
-    return {};
-  },
   props: {
-    partnerTypes: {
-      type: Array,
-      default: [],
-    },
+    partnerTypes: [],
   },
   methods: {
     onFilterChange(partner_type_id) {

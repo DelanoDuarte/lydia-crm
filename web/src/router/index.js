@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 
 import { partner_routes } from "../views/partner/routes";
@@ -43,13 +43,11 @@ const routes = [
   ...purchase_routes,
   ...purchase_opportunity_routes,
   ...product_routes,
-  ...purchase_opportunity_routes,
   ...product_categories_routes,
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+const router = new VueRouter({
+  routes, // short for `routes: routes`
 });
 
 export default router;

@@ -1,21 +1,21 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "jquery/src/jquery.js";
 import "offcanvas";
 import "animate.css";
 
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
+Vue.config.productionTip = false;
 
-library.add(faUserCircle);
-library.add(faEllipsisV);
+Vue.use(VueRouter)
 
-const app = createApp(App);
-app.component("font-awesome-icon", FontAwesomeIcon);
-app.use(router);
-app.mount("#app");
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount("#app");

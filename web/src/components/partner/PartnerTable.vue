@@ -42,10 +42,7 @@
 <script>
 export default {
   props: {
-    partners: {
-      type: Array,
-      default: [],
-    },
+    partners: [],
     methods: {},
   },
 };

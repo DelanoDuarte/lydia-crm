@@ -43,13 +43,6 @@ export default {
       partner_types: [],
     };
   },
-  props: {
-    partners: {
-      type: Array,
-      default: [],
-    },
-  },
-
   mounted() {
     document.title = "Partner | Lydia";
   },
