@@ -26,7 +26,7 @@ class PurchaseOpportunity(models.Model):
     expectedEndingDate = models.DateTimeField(null=False)
     priority = models.IntegerField(null=False, default=1)
     status = models.CharField(choices=PurchaseOpportunityStatus.choices(), max_length=128, default=PurchaseOpportunityStatus.NEW.__str__)
-    comments = models.TextField(max_length=2048)
+    comments = models.TextField(max_length=2048, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
 
     # relationship

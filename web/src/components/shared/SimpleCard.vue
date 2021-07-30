@@ -6,6 +6,10 @@
     <div class="card-content">
       <slot name="content"></slot>
     </div>
+
+    <div class="p-2 border-top" v-if="$slots['footer']">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
@@ -23,5 +27,10 @@ export default {
 }
 .card-content {
   padding: 5px;
+}
+.card-foorter {
+  padding: 2rem 2.25rem;
+  background-color: #fff !important;
+  border-top: 1px solid #ebedf3;
 }
 </style>

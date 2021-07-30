@@ -43,16 +43,41 @@
       </simple-card>
     </div>
     <div class="col-md-4">
-      <simple-card title="Partner">
-        <template
-          #content
-          v-if="purchase_opportunity.partner && purchase_opportunity.partner.id"
-        >
-          <h5>{{ purchase_opportunity.partner.firstName }}</h5>
-          <h6>{{ purchase_opportunity.partner.lastName }}</h6>
+      <simple-card
+        title="Partner"
+        v-if="purchase_opportunity.partner && purchase_opportunity.partner.id"
+      >
+        <template #content>
+          <div class="text-center pt-3">
+            <!-- <font-awesome-icon icon="user-circle" size="xl" /> -->
+            <h4 class="mt-4 mb-0">
+              {{ purchase_opportunity.partner.full_name }}
+            </h4>
+            <a class="h6 d-block text-sm text-muted"
+              >{{ purchase_opportunity.partner.email }}
+            </a>
+            <a>
+              <span class="badge bg-success text-white mb-2">
+                <div class="h7">
+                  {{ purchase_opportunity.partner.partnerType.name }}
+                </div>
+              </span>
+            </a>
+          </div>
         </template>
 
-        <template #content v-else>
+        <template #footer>
+          <a
+            class="btn btn-sm btn-danger float-right font-weight-bolder"
+            @click="removePartner()"
+          >
+            Remove
+          </a>
+        </template>
+      </simple-card>
+
+      <simple-card v-else title="Partner">
+        <template #content>
           <div class="text-center pt-3">
             <button
               class="btn btn-success btn-md"
@@ -63,6 +88,7 @@
           </div>
         </template>
       </simple-card>
+
       <b-modal
         v-model="showPartnerModal"
         title="Select Partner"
@@ -80,13 +106,24 @@
       <simple-card title="Products">
         <template #content>
           <div class="float-right pt-1 pb-1">
-            <button class="btn btn-success btn-sm">
+            <button
+              class="btn btn-success btn-sm"
+              @click="showProductModal = !showProductModal"
+            >
               <font-awesome-icon icon="plus" /> Add
             </button>
           </div>
           <purchase-opportunity-product-table :products="[]" />
         </template>
       </simple-card>
+      <b-modal
+        v-model="showProductModal"
+        title="Add Product"
+        hide-footer
+        size="lg"
+      >
+        <purchase-opportunity-create-product-add />
+      </b-modal>
     </div>
   </div>
 </template>
@@ -94,16 +131,19 @@
 <script>
 import SimpleCard from "../shared/SimpleCard.vue";
 import PurchaseOpportunityCreatePartnerSearch from "./PurchaseOpportunityCreatePartnerSearch.vue";
+import PurchaseOpportunityCreateProductAdd from "./PurchaseOpportunityCreateProductAdd.vue";
 import PurchaseOpportunityProductTable from "./PurchaseOpportunityProductTable.vue";
 export default {
   components: {
     SimpleCard,
     PurchaseOpportunityProductTable,
     PurchaseOpportunityCreatePartnerSearch,
+    PurchaseOpportunityCreateProductAdd,
   },
   data() {
     return {
       showPartnerModal: false,
+      showProductModal: false,
       purchase_opportunity: {
         expectedEndDate: undefined,
         comments: undefined,
@@ -117,6 +157,9 @@ export default {
     onSelectPartner(partner) {
       this.purchase_opportunity.partner = partner;
       this.showPartnerModal = !this.showPartnerModal;
+    },
+    removePartner() {
+      this.purchase_opportunity.partner = {};
     },
   },
 };

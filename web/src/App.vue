@@ -33,6 +33,10 @@ body {
   padding-top: 90px;
 }
 
+footer {
+  background-color: #fff !important;
+}
+
 .table {
   border-spacing: 2px;
   border-color: gray !important;
