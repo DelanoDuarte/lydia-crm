@@ -15,7 +15,7 @@
         class="table-row"
         v-for="partner in partners"
         v-bind:key="partner.id"
-        @dblclick="$emit('on-row-selected', partner.id)"
+        @dblclick="$emit('selected_partner', partner)"
       >
         <td>{{ partner.full_name }}</td>
         <td>
@@ -43,7 +43,6 @@
 export default {
   props: {
     partners: [],
-    methods: {},
   },
 };
 </script>

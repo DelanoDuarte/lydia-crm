@@ -58,6 +58,14 @@ export const PartnerService = {
       throw new Error(`PartnerService ${error}`);
     });
   },
+
+  find(filters) {
+    return client
+      .get(`${PARTNER_RESOURCE}find?search=${filters}`)
+      .catch((error) => {
+        throw new Error(`PartnerService ${error}`);
+      });
+  },
 };
 
 // Partner Types

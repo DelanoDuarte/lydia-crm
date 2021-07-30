@@ -11,6 +11,7 @@
               <input
                 required
                 type="date"
+                v-model="purchase_opportunity.expectedEndDate"
                 class="form-control form-control-sm"
                 id="inputExcpetedEndDate"
               />
@@ -20,6 +21,7 @@
               <input
                 required
                 type="number"
+                v-model="purchase_opportunity.priority"
                 max="3"
                 min="1"
                 class="form-control form-control-sm"
@@ -32,6 +34,7 @@
               <label for="inputComments" class="form-label">Comments</label>
               <textarea
                 class="form-control form-control-sm"
+                v-model="purchase_opportunity.comments"
                 id="inputComments"
               />
             </div>
@@ -41,7 +44,15 @@
     </div>
     <div class="col-md-4">
       <simple-card title="Partner">
-        <template #content>
+        <template
+          #content
+          v-if="purchase_opportunity.partner && purchase_opportunity.partner.id"
+        >
+          <h5>{{ purchase_opportunity.partner.firstName }}</h5>
+          <h6>{{ purchase_opportunity.partner.lastName }}</h6>
+        </template>
+
+        <template #content v-else>
           <div class="text-center pt-3">
             <button
               class="btn btn-success btn-md"
@@ -60,7 +71,7 @@
       >
         <div>
           <purchase-opportunity-create-partner-search
-            v-on:partner_search="onSearchPartner($event)"
+            v-on:select_partner="onSelectPartner($event)"
           />
         </div>
       </b-modal>
@@ -93,11 +104,19 @@ export default {
   data() {
     return {
       showPartnerModal: false,
+      purchase_opportunity: {
+        expectedEndDate: undefined,
+        comments: undefined,
+        priority: undefined,
+        partner: {},
+        products: [],
+      },
     };
   },
   methods: {
-    onSearchPartner(partner) {
-      console.log(partner);
+    onSelectPartner(partner) {
+      this.purchase_opportunity.partner = partner;
+      this.showPartnerModal = !this.showPartnerModal;
     },
   },
 };
