@@ -3,6 +3,7 @@ import axios from "axios";
 const PARTNER_TYPE_RESOURCE = "/partner-type/";
 const PARTNER_RESOURCE = "/partner/";
 const PRODUCT_CATEGORY_RESOURCE = "/product-category/";
+const PRODUCT_RESOURCE = "/product/";
 const PURCHASE_OPPORTUNITY_RESOURCE = "/purchase-opportunity/";
 
 export const client = axios.create({
@@ -10,7 +11,7 @@ export const client = axios.create({
   timeout: 1000,
 });
 
-// Product
+// Product Category
 export const ProductCategoryService = {
   getAll() {
     return client.get(`${PRODUCT_CATEGORY_RESOURCE}`).catch((error) => {
@@ -22,6 +23,16 @@ export const ProductCategoryService = {
     return client.get(`${PRODUCT_CATEGORY_RESOURCE}/${id}`).catch((error) => {
       throw new Error(`ProductCategoryService ${error}`);
     });
+  },
+};
+
+export const ProductService = {
+  find(filters) {
+    return client
+      .get(`${PRODUCT_RESOURCE}find?search=${filters}`)
+      .catch((error) => {
+        throw new Error(`ProductService ${error}`);
+      });
   },
 };
 

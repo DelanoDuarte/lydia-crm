@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row p-2">
       <form @submit="submitPartner($event)">
         <div class="form-row gap-3">
           <div class="col-md-6 p-2">
@@ -35,7 +35,7 @@
       </form>
     </div>
 
-    <div class="row">
+    <div class="row p-2">
       <partner-table
         :partners="partners"
         v-on:selected_partner="$emit('select_partner', $event)"

@@ -1,5 +1,7 @@
 from rest_framework.parsers import JSONParser
-from product.serializers import ProductSerializer
+from rest_framework.generics import ListAPIView
+from rest_framework import filters
+from product.serializers import ProductListSerializer, ProductSerializer
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
 from .models import Product
@@ -17,3 +19,9 @@ def index(req: HttpRequest):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+class ProductSearchView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductListSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
