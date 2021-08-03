@@ -113,7 +113,9 @@
               <font-awesome-icon icon="plus" /> Add
             </button>
           </div>
-          <purchase-opportunity-product-table :products="[]" />
+          <purchase-opportunity-product-table
+            :products="purchase_opportunity.products"
+          />
         </template>
       </simple-card>
       <b-modal
@@ -122,7 +124,9 @@
         hide-footer
         size="lg"
       >
-        <purchase-opportunity-create-product-add />
+        <purchase-opportunity-create-product-add
+          @products_changed="productsChanged($event)"
+        />
       </b-modal>
     </div>
   </div>
@@ -160,6 +164,9 @@ export default {
     },
     removePartner() {
       this.purchase_opportunity.partner = {};
+    },
+    productsChanged(products) {
+      this.purchase_opportunity.products = products;
     },
   },
 };

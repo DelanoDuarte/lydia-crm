@@ -30,31 +30,61 @@
       </form>
     </div>
     <div class="pb-2">
-      <purchase-opportunity-product-table :products="products" />
+      <purchase-opportunity-create-product-table
+        :products="products"
+        @product_selected="addProduct($event)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { ProductService } from "../../services/api";
-import PurchaseOpportunityProductTable from "./PurchaseOpportunityProductTable.vue";
+import PurchaseOpportunityCreateProductTable from "./PurchaseOpportunityCreateProductTable.vue";
 export default {
-  components: { PurchaseOpportunityProductTable },
+  components: {
+    PurchaseOpportunityCreateProductTable,
+  },
   data() {
     return {
       product: {
         name: "",
-        type: Object,
+        type: {},
       },
       products: [],
+      selectedProducts: [],
     };
   },
 
   methods: {
     queryProducts() {
-      ProductService.find(this.product.name).then(
-        (response) => (this.products = response.data)
+      ProductService.find(this.product.name).then((response) => {
+        const response_data = response.data;
+        const productsOnStore = this.selectedProducts;
+        if (response_data) {
+          if (productsOnStore.length > 0) {
+            this.products = this.products.filter(
+              (el) => !productsOnStore.includes(el)
+            );
+          } else {
+            this.products = response_data;
+          }
+        }
+      });
+    },
+
+    addProduct(product) {
+      this.$bvToast.toast("Product Added", {
+        title: `Product`,
+        variant: "success",
+        solid: true,
+      });
+      this.products.splice(
+        this.products.findIndex((p) => p.id === product.id),
+        1
       );
+      this.selectedProducts.push(product);
+      this.$emit("products_changed", this.selectedProducts);
     },
   },
 };

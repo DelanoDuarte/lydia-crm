@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { ModalPlugin } from "bootstrap-vue";
+import { ModalPlugin, ToastPlugin } from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -30,6 +30,8 @@ Vue.component("multiselect", Multiselect);
 
 Vue.use(VueRouter);
 Vue.use(ModalPlugin);
+Vue.use(ToastPlugin);
+
 Vue.config.productionTip = false;
 
 new Vue({
