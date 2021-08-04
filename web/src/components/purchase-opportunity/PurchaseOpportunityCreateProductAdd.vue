@@ -59,17 +59,7 @@ export default {
   methods: {
     queryProducts() {
       ProductService.find(this.product.name).then((response) => {
-        const response_data = response.data;
-        const productsOnStore = this.selectedProducts;
-        if (response_data) {
-          if (productsOnStore.length > 0) {
-            this.products = this.products.filter(
-              (el) => !productsOnStore.includes(el)
-            );
-          } else {
-            this.products = response_data;
-          }
-        }
+        this.products = response.data;
       });
     },
 
@@ -83,8 +73,9 @@ export default {
         this.products.findIndex((p) => p.id === product.id),
         1
       );
-      this.selectedProducts.push(product);
-      this.$emit("products_changed", this.selectedProducts);
+      this.$store.commit("product/add", product);
+      //   this.selectedProducts.push(product);
+      //   this.$emit("products_changed", this.selectedProducts);
     },
   },
 };

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Vuex from "vuex";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -9,6 +10,7 @@ import {
   faEllipsisV,
   faUserCircle,
   faPlus,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -24,10 +26,12 @@ import "animate.css";
 library.add(faUserCircle);
 library.add(faEllipsisV);
 library.add(faPlus);
+library.add(faCheckCircle);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("multiselect", Multiselect);
 
+Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(ModalPlugin);
 Vue.use(ToastPlugin);

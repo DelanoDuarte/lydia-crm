@@ -18,7 +18,13 @@
         </td>
         <td class="font-weight-bold">€ {{ product.unit_price }}</td>
         <td>
+          <font-awesome-icon
+            v-if="isAlreadyOnStore(product)"
+            icon="check-circle"
+          />
+
           <button
+            v-else
             class="btn btn-success btn-sm"
             @click="$emit('product_selected', product)"
           >
@@ -35,8 +41,15 @@ export default {
   props: {
     products: [],
   },
-
-  watch: {},
+  methods: {
+    isAlreadyOnStore(product) {
+      const productsOnStore = this.$store.state.product.products;
+      if (productsOnStore && productsOnStore.length > 0) {
+        return productsOnStore.some((p) => p.id === product.id);
+      }
+      return false;
+    },
+  },
 };
 </script>
 

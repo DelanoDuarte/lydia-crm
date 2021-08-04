@@ -114,7 +114,7 @@
             </button>
           </div>
           <purchase-opportunity-product-table
-            :products="purchase_opportunity.products"
+            :products="$store.state.product.products"
           />
         </template>
       </simple-card>
@@ -122,7 +122,7 @@
         v-model="showProductModal"
         title="Add Product"
         hide-footer
-        size="lg"
+        size="xl"
       >
         <purchase-opportunity-create-product-add
           @products_changed="productsChanged($event)"
