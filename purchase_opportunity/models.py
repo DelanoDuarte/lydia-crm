@@ -33,20 +33,22 @@ class PurchaseOpportunity(models.Model):
     partner = models.ForeignKey(Partner, on_delete=models.PROTECT)
     products = models.ManyToManyField(Product, related_name='products')
 
-    def convert_to_purchase(self, id: int):
+    def convert_to_purchase(self):
 
         # Update actual Opportunity
-        opportunity = self.objects.get(id=id)
-        opportunity.status = PurchaseOpportunityStatus.CONVERTED
-        opportunity.save()
+        self.status = PurchaseOpportunityStatus.CONVERTED.value
+        self.save()
 
         # Create Purchase based on Opportunity
-        purchase = Purchase(
-            partner=opportunity.partner,
-            products=opportunity.products,
-            comments=opportunity.comments,
-            opportunity=opportunity
+        purchase = Purchase.objects.create(
+            partner=self.partner,
+            comments=self.comments,
+            opportunity=self
         )
-        purchase.save()
 
-        return opportunity
+        if self.products:
+            for p in self.products.all():
+                product = Product.objects.get(id=p.id)
+                purchase.products.add(product)
+
+        return self

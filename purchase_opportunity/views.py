@@ -38,7 +38,7 @@ class PurchaseOpportunityFind(APIView):
         opportunity = PurchaseOpportunity.objects.get(id=id)
         serializer = PurchaseOpportunityListSerializer(opportunity)
         return Response(serializer.data)
-
+        
     def delete(self, request: Request, id: int):
         opportunity = PurchaseOpportunity.objects.get(id=id)
         opportunity.delete()
@@ -50,3 +50,13 @@ class PurchaseOpportunityStatusList(APIView):
     def get(self, request: Request):
         all_status = PurchaseOpportunityStatus.values()
         return Response(list(all_status))
+
+class PurchaseOpportunityConvert(APIView):
+
+    def post(self, request: Request, id: int):
+        opportunity: PurchaseOpportunity
+        opportunity = PurchaseOpportunity.objects.get(id=id)
+        opportunity_converted = opportunity.convert_to_purchase()
+
+        serializer = PurchaseOpportunityListSerializer(opportunity_converted, many=False)
+        return Response(status=HTTP_200_OK, data=serializer.data)

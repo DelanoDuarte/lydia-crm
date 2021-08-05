@@ -43,6 +43,8 @@ export default {
             variant: "success",
             solid: true,
           });
+        })
+        .then(() => {
           this.$router.push({ name: "purchase-opportunity-index" });
           this.$store.commit("product/clear");
         })

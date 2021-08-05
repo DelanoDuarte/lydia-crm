@@ -30,10 +30,10 @@
       </form>
     </div>
     <div class="pb-2">
-      <purchase-opportunity-create-product-table
-        :products="products"
-        @product_selected="addProduct($event)"
-      />
+        <purchase-opportunity-create-product-table
+          :products="products"
+          @product_selected="addProduct($event)"
+        />
     </div>
   </div>
 </template>
@@ -47,6 +47,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       product: {
         name: "",
         type: {},
@@ -58,9 +59,14 @@ export default {
 
   methods: {
     queryProducts() {
-      ProductService.find(this.product.name).then((response) => {
-        this.products = response.data;
-      });
+      this.loading = true;
+      ProductService.find(this.product.name)
+        .then((response) => {
+          this.products = response.data;
+        })
+        .then(() => {
+          this.loading = false;
+        });
     },
 
     addProduct(product) {
