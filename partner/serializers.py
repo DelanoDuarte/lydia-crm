@@ -58,3 +58,8 @@ class PartnerListSerializer(serializers.ModelSerializer):
             'partnerType',
             'address'
         )
+
+class PartnerSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Partner
+        fields=('__all__')

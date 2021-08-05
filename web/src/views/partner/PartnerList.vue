@@ -20,21 +20,7 @@
         </div>
       </div>
 
-      <simple-card>
-        <template v-slot:header>
-          <div class="row justify-center">
-            <div class="col-md-6">
-              <h4>Partners</h4>
-            </div>
-            <div class="col-md-6">
-              <router-link
-                class="btn btn-success btn-sm col-2 float-end"
-                :to="{ name: 'partner-create' }"
-                >NEW</router-link
-              >
-            </div>
-          </div>
-        </template>
+      <simple-card title="Partners">
         <template v-slot:content>
           <partner-table :partners="partners_data" />
         </template>
@@ -57,13 +43,6 @@ export default {
       partner_types: [],
     };
   },
-  props: {
-    partners: {
-      type: Array,
-      default: [],
-    },
-  },
-
   mounted() {
     document.title = "Partner | Lydia";
   },

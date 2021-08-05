@@ -37,7 +37,7 @@
                 <select
                   required
                   id="inputPartnerGender"
-                  class="form-select form-select-sm"
+                  class="form-control form-control-sm"
                   v-model="partner.gender"
                 >
                   <option
@@ -56,7 +56,7 @@
                 <select
                   required
                   id="inputPartnerType"
-                  class="form-select form-select-sm"
+                  class="form-control form-control-sm"
                   v-model="partner.partnerType"
                 >
                   <option :value="null" selected>Partner Types</option>
@@ -188,7 +188,7 @@
               </div>
               <div class="col-md-5">
                 <label for="inputCountry" class="form-label">Country</label>
-                <select id="inputCountry" class="form-select form-select-sm">
+                <select id="inputCountry" class="form-control form-control-sm">
                   <option selected>Choose...</option>
                   <option>...</option>
                 </select>

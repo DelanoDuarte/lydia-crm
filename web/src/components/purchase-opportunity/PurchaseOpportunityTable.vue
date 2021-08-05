@@ -7,6 +7,7 @@
         <th scope="col">Priority</th>
         <th scope="col">Expected End Date</th>
         <th scope="col">Created At</th>
+        <th scope="colr"></th>
       </tr>
     </thead>
     <tbody>
@@ -17,12 +18,19 @@
         class="clickable-row"
       >
         <td>
-          <span class="badge bg-success">{{ po.status }}</span>
+          <span class="badge bg-success text-white">{{ po.status }}</span>
         </td>
-        <td>{{ po.partner.full_name }}</td>
+        <td>
+          <b>
+            {{ po.partner.full_name }}
+          </b>
+        </td>
         <td>{{ po.priority }}</td>
         <td>{{ po.expectedEndingDate }}</td>
         <td>{{ po.createdAt }}</td>
+        <td>
+          <font-awesome-icon icon="ellipsis-v" />
+        </td>
       </tr>
     </tbody>
   </table>
@@ -31,10 +39,7 @@
 <script>
 export default {
   props: {
-    purchase_opportunities: {
-      type: Array,
-      default: [],
-    },
+    purchase_opportunities: [],
   },
 };
 </script>

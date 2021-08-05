@@ -1,11 +1,13 @@
 <template>
   <div class="row">
-    <purchase-opportunity-filters
-      :purchase_opportunity_status="all_status"
-      v-on:filter-purchase-opportunity="onFilterChanged($event)"
-      v-on:clear-filters="load()"
-    />
-
+    <div class="col-md-2">
+      <purchase-opportunity-filters
+        :purchase_opportunity_status="all_status"
+        v-on:filter-purchase-opportunity="onFilterChanged($event)"
+        v-on:clear-filters="load()"
+      />
+    </div>
+    
     <div class="col-md-10">
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-3">
@@ -15,6 +17,16 @@
           <card-status title="Last Month" subTitle="2358"> </card-status>
         </div>
       </div>
+      <!-- 
+      <div class="row pb-2">
+        <div class="float-end">
+          <router-link
+            class="btn btn-success btn-sm col-2"
+            :to="{ name: 'partner-create' }"
+            >New Opportunity</router-link
+          >
+        </div>
+      </div> -->
 
       <simple-card title="Opportunity">
         <template #content>

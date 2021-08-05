@@ -21,3 +21,13 @@ class ProductSerializer(serializers.Serializer):
 
     def create(self, validated_data: Dict):
         return Product.objects.create(**validated_data)
+
+
+class ProductListSerializer(serializers.ModelSerializer):
+    product_category = ProductCategorySerializer()
+    
+    class Meta:
+        model = Product
+        fields=(
+            '__all__'
+        )

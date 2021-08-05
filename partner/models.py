@@ -1,7 +1,10 @@
 from enum import Enum
-from partner_type.models import PartnerType
+
 from address.models import Address
 from django.db import models
+from django.db.models.query_utils import Q
+from partner_type.models import PartnerType
+
 
 # Create your models here.
 class Gender(Enum):
@@ -45,3 +48,11 @@ class Partner(models.Model):
 
     def get_absolute_url(self):
         return f'/{self.slug}/'
+
+    def find_by_name_or_birthdate(self, firstName: str, lastName: str, birthDate):
+        partner = self.objects.filter(
+            Q(firstName__contains=firstName) | 
+            Q(lastName__contains=lastName) |
+            Q(birthDate=birthDate)
+        )
+        return partner

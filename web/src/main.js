@@ -1,19 +1,46 @@
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Vuex from "vuex";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
+import {
+  faEllipsisV,
+  faUserCircle,
+  faPlus,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+import { ModalPlugin, ToastPlugin } from "bootstrap-vue";
+import Multiselect from "vue-multiselect";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import "jquery/src/jquery.js";
 import "offcanvas";
 import "animate.css";
 
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-
 library.add(faUserCircle);
+library.add(faEllipsisV);
+library.add(faPlus);
+library.add(faCheckCircle);
 
-const app = createApp(App);
-app.component("font-awesome-icon", FontAwesomeIcon);
-app.use(router);
-app.mount("#app");
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("multiselect", Multiselect);
+
+Vue.use(Vuex);
+Vue.use(VueRouter);
+Vue.use(ModalPlugin);
+Vue.use(ToastPlugin);
+
+Vue.config.productionTip = false;
+
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount("#app");

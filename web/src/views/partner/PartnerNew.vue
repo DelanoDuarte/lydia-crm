@@ -6,7 +6,7 @@
       </div>
 
       <div class="col-md-6">
-        <button @click="create()" class="btn btn-success btn-md float-end">
+        <button @click="create()" class="btn btn-success btn-md float-right">
           Save Partner
         </button>
       </div>
@@ -19,10 +19,9 @@
 
 <script>
 import PartnerForm from "../../components/partner/PartnerForm.vue";
-import SimpleCard from "../../components/shared/SimpleCard.vue";
 import { PartnerService, PartnerTypeService } from "../../services/api";
 export default {
-  components: { SimpleCard, PartnerForm },
+  components: { PartnerForm },
   data() {
     return {
       partnerTypes: [],
@@ -40,8 +39,7 @@ export default {
 
     create() {
       const partner = this.$refs.partnerForm.partner;
-      console.log(partner);
-      PartnerService.create(partner).then((data) => {
+      PartnerService.create(partner).then(() => {
         console.log("Partner Created");
         this.$router.push({ name: "partner-list" });
       });

@@ -1,9 +1,12 @@
-from partner.serializers import PartnerListSerializer, PartnerSerializer
-from partner.models import Gender, Partner
 from django.http.request import HttpRequest
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse 
 from django.shortcuts import render
 from rest_framework.parsers import JSONParser
+from rest_framework import filters
+from rest_framework.generics import ListAPIView
+from partner.models import Gender, Partner
+from partner.serializers import PartnerListSerializer, PartnerSerializer
+
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -39,3 +42,13 @@ def by_partner_type(request: HttpRequest, partner_type_id: int):
 def genders(request: HttpRequest):
     genders =  Gender.values()
     return JsonResponse(list(genders), safe=False)
+
+
+class PartnerSearch(ListAPIView):
+    queryset = Partner.objects.all()
+    serializer_class = PartnerListSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['firstName', 'lastName', 'birthDate']
+    filterset_fields=['firstName', 'lastName', 'birthDate']
+
+

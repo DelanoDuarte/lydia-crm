@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rest_framework import serializers
+from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 
-from purchase_opportunity.serializers import PurchaseOpportunityListSerializer
+from purchase_opportunity.serializers import PurchaseOpportunityCreateSerializer, PurchaseOpportunityListSerializer
 
 from .models import PurchaseOpportunity, PurchaseOpportunityStatus
 
@@ -23,6 +24,13 @@ class PurchaseOpportunityList(APIView):
         opportunities = PurchaseOpportunity.objects.all()
         serializer = PurchaseOpportunityListSerializer(opportunities, many=True)
         return Response(serializer.data)
+    
+    def post(self, request: Request):
+        serializer = PurchaseOpportunityCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PurchaseOpportunityFind(APIView):
 

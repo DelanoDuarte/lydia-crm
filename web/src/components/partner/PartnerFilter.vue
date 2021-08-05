@@ -1,11 +1,10 @@
 <template>
-  <simple-card>
-    <template v-slot:header>
-      <h4>Filters</h4>
+  <simple-card title="Actions">
+    <template #header>
       <div class="row p-2">
         <select
           id="partnerTypeSelect"
-          class="form-select"
+          class="form-control"
           aria-label="Default select example"
           @change="$emit('filter-partner', $event.target.value)"
         >
@@ -20,9 +19,16 @@
         </select>
       </div>
       <div class="row d-grid gap-2 p-2">
-        <button class="btn btn-success" type="button">Advanced Filters</button>
+        <router-link
+          class="btn btn-success btn-sm btn-block"
+          :to="{ name: 'partner-create' }"
+          >New Partner</router-link
+        >
+        <button class="btn btn-secondary btn-sm btn-block" type="button">
+          Advanced Filters
+        </button>
         <button
-          class="btn btn-outline-danger"
+          class="btn btn-outline-danger btn-sm btn-block"
           type="button"
           @click="$emit('clear-filters')"
         >
@@ -37,14 +43,8 @@
 import SimpleCard from "../shared/SimpleCard.vue";
 export default {
   components: { SimpleCard },
-  data() {
-    return {};
-  },
   props: {
-    partnerTypes: {
-      type: Array,
-      default: [],
-    },
+    partnerTypes: [],
   },
   methods: {
     onFilterChange(partner_type_id) {

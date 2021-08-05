@@ -25,3 +25,4 @@ class Purchase(models.Model):
     # relationships
     partner = models.ForeignKey(Partner, on_delete=models.PROTECT, null=False)
     products = models.ManyToManyField(Product)
+    opportunity = models.ForeignKey('purchase_opportunity.PurchaseOpportunity', on_delete=models.PROTECT, null=True)
