@@ -124,4 +124,12 @@ export const PurchaseOpportunityService = {
         throw new Error(`PurchaseOpportunityService ${error}`);
       });
   },
+
+  create(purchaseOpportunity) {
+    return client
+      .post(`${PURCHASE_OPPORTUNITY_RESOURCE}`, purchaseOpportunity)
+      .catch((error) => {
+        throw new Error(`PurchaseOpportunityService ${error}`);
+      });
+  },
 };

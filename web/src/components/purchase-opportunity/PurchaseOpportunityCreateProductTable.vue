@@ -21,6 +21,8 @@
           <font-awesome-icon
             v-if="isAlreadyOnStore(product)"
             icon="check-circle"
+            size="2x"
+            :style="{ color: 'green' }"
           />
 
           <button

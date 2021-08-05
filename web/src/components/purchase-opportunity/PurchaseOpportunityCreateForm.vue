@@ -11,7 +11,7 @@
               <input
                 required
                 type="date"
-                v-model="purchase_opportunity.expectedEndDate"
+                v-model="purchase_opportunity.expectedEndingDate"
                 class="form-control form-control-sm"
                 id="inputExcpetedEndDate"
               />
@@ -149,7 +149,7 @@ export default {
       showPartnerModal: false,
       showProductModal: false,
       purchase_opportunity: {
-        expectedEndDate: undefined,
+        expectedEndingDate: undefined,
         comments: undefined,
         priority: undefined,
         partner: {},

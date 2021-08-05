@@ -23,15 +23,15 @@ class PurchaseOpportunityStatus(Enum):
 class PurchaseOpportunity(models.Model):
 
     code = models.CharField(max_length=128)
-    expectedEndingDate = models.DateTimeField(null=False)
+    expectedEndingDate = models.DateField(null=False)
     priority = models.IntegerField(null=False, default=1)
-    status = models.CharField(choices=PurchaseOpportunityStatus.choices(), max_length=128, default=PurchaseOpportunityStatus.NEW.__str__)
+    status = models.CharField(choices=PurchaseOpportunityStatus.choices(), max_length=128, default=PurchaseOpportunityStatus.NEW.value)
     comments = models.TextField(max_length=2048, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
 
     # relationship
     partner = models.ForeignKey(Partner, on_delete=models.PROTECT)
-    products = models.ManyToManyField(Product)
+    products = models.ManyToManyField(Product, related_name='products')
 
     def convert_to_purchase(self, id: int):
 

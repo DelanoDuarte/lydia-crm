@@ -1,3 +1,6 @@
+from typing import Dict
+from product.models import Product
+from partner.models import Partner
 from product.serializers import ProductSerializer
 from .models import PurchaseOpportunity
 from partner.serializers import PartnerSerializer
@@ -6,6 +9,10 @@ from rest_framework import serializers
 class PurchaseOpportunityCreateSerializer(serializers.ModelSerializer):
 
     comments = serializers.CharField(required=False)
+    partner = serializers.PrimaryKeyRelatedField(queryset=Partner.objects)
+    products = serializers.ListField(
+        child = serializers.PrimaryKeyRelatedField(queryset=Product.objects), write_only=True
+    )
 
     class Meta:
         model = PurchaseOpportunity
@@ -18,8 +25,13 @@ class PurchaseOpportunityCreateSerializer(serializers.ModelSerializer):
             'products'
         ) 
     
-    def save(self, **kwargs):
-        return PurchaseOpportunity.objects.create(**kwargs)
+    def create(self, data: Dict):
+        products_data = data.pop('products')
+        purchase = PurchaseOpportunity.objects.create(**data)
+        if products_data:
+            for product in products_data:
+                purchase.products.add(product)
+        return purchase
 
 class PurchaseOpportunityListSerializer(serializers.ModelSerializer):
 
