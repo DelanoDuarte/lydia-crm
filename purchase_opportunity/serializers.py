@@ -1,7 +1,7 @@
-from typing import Dict
+from typing import Dict, Tuple
 from product.models import Product
 from partner.models import Partner
-from product.serializers import ProductSerializer
+from product.serializers import ProductListSerializer, ProductSerializer
 from .models import PurchaseOpportunity
 from partner.serializers import PartnerSerializer
 from rest_framework import serializers

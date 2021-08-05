@@ -74,8 +74,6 @@ export default {
         1
       );
       this.$store.commit("product/add", product);
-      //   this.selectedProducts.push(product);
-      //   this.$emit("products_changed", this.selectedProducts);
     },
   },
 };

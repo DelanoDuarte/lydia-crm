@@ -7,6 +7,9 @@ export const productModule = {
     add(state, product) {
       state.products.push(product);
     },
+    clear(state) {
+      state.products = [];
+    },
   },
   actions: {},
 };

@@ -19,7 +19,7 @@
       >
         <td>{{ partner.full_name }}</td>
         <td>
-          <span class="badge rounded-pill bg-info">
+          <span class="badge rounded-pill bg-info text-white">
             {{ partner.gender }}
           </span>
         </td>
@@ -27,7 +27,7 @@
         <td v-if="partner.birthDate">{{ partner.birthDate }}</td>
         <td v-else>*Not Provided</td>
         <td>
-          <span class="badge rounded-pill bg-success">
+          <span class="badge rounded-pill bg-success text-white">
             {{ partner.partnerType.name }}
           </span>
         </td>

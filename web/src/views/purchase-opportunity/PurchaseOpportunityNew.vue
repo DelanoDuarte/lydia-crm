@@ -31,8 +31,10 @@ export default {
     create() {
       const purchase_opportunity =
         this.$refs.purchaseOpportunityForm.purchase_opportunity;
-      purchase_opportunity.products = this.$store.state.product.products.map(p => p.id);
-      purchase_opportunity.partner = purchase_opportunity.partner.id 
+      purchase_opportunity.products = this.$store.state.product.products.map(
+        (p) => p.id
+      );
+      purchase_opportunity.partner = purchase_opportunity.partner.id;
 
       PurchaseOpportunityService.create(purchase_opportunity)
         .then(() => {
@@ -42,6 +44,7 @@ export default {
             solid: true,
           });
           this.$router.push({ name: "purchase-opportunity-index" });
+          this.$store.commit("product/clear");
         })
         .catch(() => {
           this.$bvToast.toast(

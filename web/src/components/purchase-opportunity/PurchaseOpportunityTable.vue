@@ -18,7 +18,7 @@
         class="clickable-row"
       >
         <td>
-          <span class="badge bg-success">{{ po.status }}</span>
+          <span class="badge bg-success text-white">{{ po.status }}</span>
         </td>
         <td>
           <b>
