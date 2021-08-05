@@ -17,7 +17,7 @@ class PurchaseStatus(Enum):
 
 class Purchase(models.Model):
     
-    status = models.CharField(choices=PurchaseStatus.choices(), max_length=128, default=PurchaseStatus.STARTED.__str__)
+    status = models.CharField(choices=PurchaseStatus.choices(), max_length=128, default=PurchaseStatus.STARTED.value)
     purchaseDate = models.DateTimeField(auto_now_add=True)
     comments = models.CharField(max_length=2048, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)

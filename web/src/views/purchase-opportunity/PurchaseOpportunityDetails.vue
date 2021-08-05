@@ -7,8 +7,20 @@
         </template>
         <template #content>
           <div class="row d-grid gap-2 p-2">
-            <button class="btn btn-success btn-sm btn-block" type="button">
+            <button
+              class="btn btn-success btn-sm btn-block"
+              type="button"
+              v-bind:disabled="isWithStatus('CONVERTED', purchase_opportunity)"
+              @click="showConvertModal = !showConvertModal"
+            >
               Convert
+            </button>
+            <button
+              class="btn btn-danger btn-sm btn-block"
+              type="button"
+              v-bind:disabled="isWithStatus('CONVERTED', purchase_opportunity)"
+            >
+              Not Convert
             </button>
             <button
               class="btn btn-outline-danger btn-sm btn-block"
@@ -24,6 +36,14 @@
               Go Back
             </button>
           </div>
+
+          <b-modal
+            v-model="showConvertModal"
+            title="Confirm Convertion to Purchase"
+            size="sm"
+            v-on:ok="convertToPurchase()"
+          >
+          </b-modal>
         </template>
       </simple-card>
     </div>
@@ -70,6 +90,7 @@ import PurchaseOpportunityProductTable from "../../components/purchase-opportuni
 import SimpleCard from "../../components/shared/SimpleCard.vue";
 import Stepper from "../../components/shared/Stepper.vue";
 import { PurchaseOpportunityService } from "../../services/api";
+import { isOnStatus } from "../../utils/PurchaseStatusUtils";
 export default {
   components: {
     SimpleCard,
@@ -82,6 +103,7 @@ export default {
       purchase_opportunity: {
         type: Object,
       },
+      showConvertModal: false,
       all_status: [],
     };
   },
@@ -98,6 +120,25 @@ export default {
       PurchaseOpportunityService.getAllStatus().then(
         (status) => (this.all_status = status.data)
       );
+    },
+    convertToPurchase() {
+      PurchaseOpportunityService.convertToPurchase(this.purchase_opportunity.id)
+        .then(() => {
+          this.$bvToast.toast("Purchase Opportunity converted successfully", {
+            title: `Purchase Opportunity`,
+            variant: "success",
+            solid: true,
+          });
+        })
+        .then(() => {
+          this.$router.push({ name: "purchase-opportunity-index" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    isWithStatus(status, opportunity) {
+      return isOnStatus(status, opportunity);
     },
   },
 };

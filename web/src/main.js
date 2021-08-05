@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { ModalPlugin, ToastPlugin } from "bootstrap-vue";
+import { ModalPlugin, ToastPlugin, OverlayPlugin } from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -34,8 +34,10 @@ Vue.component("multiselect", Multiselect);
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
+
 Vue.use(ModalPlugin);
 Vue.use(ToastPlugin);
+Vue.use(OverlayPlugin)
 
 Vue.config.productionTip = false;
 
