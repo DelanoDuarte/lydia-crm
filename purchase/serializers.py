@@ -1,6 +1,8 @@
 from typing import Dict
+
 from partner.serializers import PartnerSerializer
 from product.serializers import ProductSerializer
+from purchase_opportunity.serializers import PurchaseOpportunityListSerializer
 from rest_framework import serializers
 
 from .models import Purchase
@@ -11,6 +13,7 @@ class PurchaseSerializer(serializers.ModelSerializer):
     # relationships
     partner = PartnerSerializer()
     products = ProductSerializer(many=True)
+    opportunity = PurchaseOpportunityListSerializer(many=False)
 
     class Meta:
         model = Purchase
@@ -20,7 +23,8 @@ class PurchaseSerializer(serializers.ModelSerializer):
             'status',
             'comments',
             'partner',
-            'products'
+            'products',
+            'opportunity'
         )
 
 class PurchaseCreateSerializer(serializers.ModelSerializer):
