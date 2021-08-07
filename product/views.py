@@ -10,7 +10,7 @@ from .models import Product
 def index(req: HttpRequest):
     if req.method == 'GET':
         products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
+        serializer = ProductListSerializer(products, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif req.method == 'POST':
         data = JSONParser().parse(req)

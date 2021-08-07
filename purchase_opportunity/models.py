@@ -1,4 +1,5 @@
 from enum import Enum
+from datetime import date
 from django.db import models
 from partner.models import Partner
 from product.models import Product
@@ -43,12 +44,19 @@ class PurchaseOpportunity(models.Model):
         purchase = Purchase.objects.create(
             partner=self.partner,
             comments=self.comments,
-            opportunity=self
+            opportunity=self,
+            purchaseDate=date.today()
         )
 
+        # Add the products
         if self.products:
             for p in self.products.all():
                 product = Product.objects.get(id=p.id)
                 purchase.products.add(product)
 
+        return self
+
+    def not_convert(self):
+        self.status = PurchaseOpportunityStatus.NOT_CONVERTED.value
+        self.save()
         return self
