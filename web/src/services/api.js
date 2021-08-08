@@ -34,6 +34,12 @@ export const ProductService = {
         throw new Error(`ProductService ${error}`);
       });
   },
+
+  all() {
+    return client.get(`${PRODUCT_RESOURCE}`).catch((error) => {
+      throw new Error(`ProductService ${error}`);
+    });
+  },
 };
 
 // Partner
