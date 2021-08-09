@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-md-2">
-      <simple-card title="Filters"> </simple-card>
+      <product-catalog-filters> </product-catalog-filters>
     </div>
 
     <div class="col-md-10">
@@ -17,6 +17,7 @@
                 :images="product.images"
                 :title="product.name"
                 :price="product.unit_price"
+                :category="product.product_category.name"
               >
               </card-product-catalog>
             </div>
@@ -29,10 +30,11 @@
 
 <script>
 import CardProductCatalog from "../../components/product/CardProductCatalog.vue";
+import ProductCatalogFilters from "../../components/product/ProductCatalogFilters.vue";
 import SimpleCard from "../../components/shared/SimpleCard.vue";
 import { ProductService } from "../../services/api";
 export default {
-  components: { SimpleCard, CardProductCatalog },
+  components: { SimpleCard, CardProductCatalog, ProductCatalogFilters },
   data() {
     return {
       products: [],

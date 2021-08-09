@@ -26,6 +26,7 @@ export const ProductCategoryService = {
   },
 };
 
+// Product
 export const ProductService = {
   find(filters) {
     return client
@@ -36,6 +37,12 @@ export const ProductService = {
   },
 
   all() {
+    return client.get(`${PRODUCT_RESOURCE}`).catch((error) => {
+      throw new Error(`ProductService ${error}`);
+    });
+  },
+
+  allByProductType(type) {
     return client.get(`${PRODUCT_RESOURCE}`).catch((error) => {
       throw new Error(`ProductService ${error}`);
     });

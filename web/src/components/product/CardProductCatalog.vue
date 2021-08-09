@@ -31,7 +31,9 @@
         <h6 class="mb-0">{{ title }}</h6>
         <span class="text-danger font-weight-bold">$ {{ price }}</span>
       </div>
-      <div class="d-flex justify-content-between align-items-center mt-2"></div>
+      <div class="align-items-center mt-2 mb-2 float-right">
+        <a class="badge badge-secondary">{{ category }}</a>
+      </div>
       <div class="mt-3">
         <button class="btn btn-success btn-sm btn-block">Details</button>
       </div>
@@ -50,6 +52,9 @@ export default {
     },
     price: {
       type: Number,
+    },
+    category: {
+      type: String,
     },
   },
   data() {

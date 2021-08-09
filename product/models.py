@@ -27,3 +27,9 @@ class Product(models.Model):
     
     def __str__(self) -> str:
         return f'{self.name}'
+
+
+    def by_category(category_name: str):
+        if category_name:
+            return Product.objects.filter(product_category__name=category_name).all()
+        return Product.objects.all()

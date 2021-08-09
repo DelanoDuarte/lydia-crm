@@ -1,6 +1,9 @@
 from rest_framework.parsers import JSONParser
 from rest_framework.generics import ListAPIView
 from rest_framework import filters
+from rest_framework.views import APIView
+from rest_framework.request import Request
+from rest_framework.response import Response
 from product.serializers import ProductListSerializer, ProductSerializer
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
@@ -25,3 +28,11 @@ class ProductSearchView(ListAPIView):
     serializer_class = ProductListSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
+
+class ProductSearchByCategoryView(APIView):
+
+    def get(self, request: Request):
+        category = request.query_params.get('category')
+        products = Product.by_category(category_name=category)
+        serializer = ProductListSerializer(products, many=True)
+        return Response(serializer.data)
