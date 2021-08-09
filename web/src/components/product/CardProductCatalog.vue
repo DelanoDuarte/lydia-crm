@@ -8,26 +8,28 @@
         controls
         indicators
         background="#ababab"
-        img-width="600"
-        img-height="480"
         style="text-shadow: 1px 1px 2px #333"
         @sliding-start="onSlideStart"
         @sliding-end="onSlideEnd"
       >
         <!-- Slides with image only -->
 
-        <b-carousel-slide
-          v-for="image in images"
-          :key="image.id"
-          :img-src="image.image_url"
-        >
+        <b-carousel-slide v-for="image in images" :key="image.id">
+          <template #img>
+            <img
+              class="d-block w-100"
+              height="300"
+              :src="image.image_url"
+              alt="image slot"
+            />
+          </template>
         </b-carousel-slide>
       </b-carousel>
     </div>
     <div class="product-detail-container">
       <div class="d-flex justify-content-between align-items-center">
         <h6 class="mb-0">{{ title }}</h6>
-        <span class="text-danger font-weight-bold">${{ price }}</span>
+        <span class="text-danger font-weight-bold">$ {{ price }}</span>
       </div>
       <div class="d-flex justify-content-between align-items-center mt-2"></div>
       <div class="mt-3">
