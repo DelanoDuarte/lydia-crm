@@ -1,10 +1,10 @@
-FROM node:lts-alpine
+FROM node:lts-alpine as build
 
 # install simple http server for serving static content
 RUN npm install -g http-server
 
 # make the 'app' folder the current working directory
-WORKDIR /app
+WORKDIR /web
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY ./web/package*.json ./
@@ -18,5 +18,8 @@ COPY ./web .
 # build app for production with minification
 RUN npm run build
 
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+# production stage
+FROM nginx:latest
+COPY --from=build /web/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
