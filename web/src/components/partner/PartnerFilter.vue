@@ -1,10 +1,10 @@
 <template>
-  <simple-card title="Actions">
+  <simple-card title="Filters">
     <template #header>
       <div class="row p-2">
         <select
           id="partnerTypeSelect"
-          class="form-control"
+          class="form-control form-control-sm"
           aria-label="Default select example"
           @change="$emit('filter-partner', $event.target.value)"
         >

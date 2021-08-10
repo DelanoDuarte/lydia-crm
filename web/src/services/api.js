@@ -42,8 +42,12 @@ export const ProductService = {
     });
   },
 
-  allByProductType(type) {
-    return client.get(`${PRODUCT_RESOURCE}`).catch((error) => {
+  allByCategory(category) {
+    const PRODUCT_URL_FILTER = category
+      ? `${PRODUCT_RESOURCE}category/find?category=${category}`
+      : `${PRODUCT_RESOURCE}category/find`;
+
+    return client.get(`${PRODUCT_URL_FILTER}`).catch((error) => {
       throw new Error(`ProductService ${error}`);
     });
   },

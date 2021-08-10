@@ -39,10 +39,18 @@ export default {
 
     create() {
       const partner = this.$refs.partnerForm.partner;
-      PartnerService.create(partner).then(() => {
-        console.log("Partner Created");
-        this.$router.push({ name: "partner-list" });
-      });
+      PartnerService.create(partner)
+        .then(() => {
+          console.log("Partner Created");
+          this.$router.push({ name: "partner-list" });
+        })
+        .then(() => {
+          this.$bvToast.toast("New Partner sucessfuly created", {
+            title: `Partner`,
+            variant: "success",
+            solid: true,
+          });
+        });
     },
   },
 };

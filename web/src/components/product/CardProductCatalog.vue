@@ -1,5 +1,5 @@
 <template>
-  <div class="card mb-4 border-0">
+  <div class="card mb-4">
     <div class="img-container">
       <b-carousel
         id="carousel-1"

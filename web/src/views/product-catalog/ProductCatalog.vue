@@ -1,10 +1,12 @@
 <template>
   <div class="row">
-    <div class="col-md-2">
-      <product-catalog-filters> </product-catalog-filters>
+    <div class="col-md-3">
+      <product-catalog-filters
+        v-on:selected_category="filtersChanged($event)"
+      />
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-9">
       <simple-card title="Product Catalog">
         <template #content>
           <div class="row p-2">
@@ -44,12 +46,16 @@ export default {
     this.load();
   },
   methods: {
-    load() {
-      ProductService.all()
+    load(filters) {
+      ProductService.allByCategory(filters)
         .then((response) => {
           this.products = response.data;
         })
         .catch((error) => console.log(error));
+    },
+
+    filtersChanged(data) {
+      this.load(data);
     },
   },
 };

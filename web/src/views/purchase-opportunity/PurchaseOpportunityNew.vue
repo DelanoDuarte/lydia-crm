@@ -38,15 +38,15 @@ export default {
 
       PurchaseOpportunityService.create(purchase_opportunity)
         .then(() => {
+          this.$store.commit("product/clear");
+          this.$router.push({ name: "purchase-opportunity-index" });
+        })
+        .then(() => {
           this.$bvToast.toast("Purchase Opportunity successfuly created.", {
             title: `Purchase Opportunity`,
             variant: "success",
             solid: true,
           });
-        })
-        .then(() => {
-          this.$router.push({ name: "purchase-opportunity-index" });
-          this.$store.commit("product/clear");
         })
         .catch(() => {
           this.$bvToast.toast(
