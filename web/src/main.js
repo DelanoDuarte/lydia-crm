@@ -14,12 +14,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { ModalPlugin, ToastPlugin, OverlayPlugin } from "bootstrap-vue";
+import {
+  ModalPlugin,
+  ToastPlugin,
+  OverlayPlugin,
+  CarouselPlugin,
+} from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import "bootstrap-vue/dist/bootstrap-vue.css";
 import "jquery/src/jquery.js";
 import "offcanvas";
 import "animate.css";
@@ -37,7 +42,8 @@ Vue.use(VueRouter);
 
 Vue.use(ModalPlugin);
 Vue.use(ToastPlugin);
-Vue.use(OverlayPlugin)
+Vue.use(OverlayPlugin);
+Vue.use(CarouselPlugin);
 
 Vue.config.productionTip = false;
 

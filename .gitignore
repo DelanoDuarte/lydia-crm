@@ -1,6 +1,8 @@
 *.sqlite3
 __pycache__
 
+images
+uploads
 .vscode
 
 *node_modules
