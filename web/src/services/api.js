@@ -5,13 +5,15 @@ const PARTNER_RESOURCE = "/partner/";
 const PRODUCT_CATEGORY_RESOURCE = "/product-category/";
 const PRODUCT_RESOURCE = "/product/";
 const PURCHASE_OPPORTUNITY_RESOURCE = "/purchase-opportunity/";
+const PURCHASE_RESOURCE = "/purchase/";
 
 export const client = axios.create({
   baseURL: "http://127.0.0.1:8000",
   timeout: 1000,
 });
 
-// Product Category
+/** Product Category */
+
 export const ProductCategoryService = {
   getAll() {
     return client.get(`${PRODUCT_CATEGORY_RESOURCE}`).catch((error) => {
@@ -26,7 +28,8 @@ export const ProductCategoryService = {
   },
 };
 
-// Product
+/** Product */
+
 export const ProductService = {
   find(filters) {
     return client
@@ -53,7 +56,8 @@ export const ProductService = {
   },
 };
 
-// Partner
+/** Partner */
+
 export const PartnerService = {
   getAll() {
     return client.get(`${PARTNER_RESOURCE}`).catch((error) => {
@@ -96,7 +100,8 @@ export const PartnerService = {
   },
 };
 
-// Partner Types
+/** Partner Type*/
+
 export const PartnerTypeService = {
   getAll() {
     return client.get(`${PARTNER_TYPE_RESOURCE}`).catch((error) => {
@@ -111,7 +116,8 @@ export const PartnerTypeService = {
   },
 };
 
-// Purchase Opportunity
+/** Purchase Opportunity */
+
 export const PurchaseOpportunityService = {
   getAll(params) {
     if (params) {
@@ -156,5 +162,15 @@ export const PurchaseOpportunityService = {
       .catch((error) => {
         throw new Error(`PurchaseOpportunityService ${error}`);
       });
+  },
+};
+
+/** Purchase */
+
+export const PurchaseService = {
+  all() {
+    return client.get(`${PURCHASE_RESOURCE}`).catch((error) => {
+      throw new Error(`PurchaseService ${error}`);
+    });
   },
 };

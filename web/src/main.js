@@ -19,6 +19,7 @@ import {
   ToastPlugin,
   OverlayPlugin,
   CarouselPlugin,
+  TablePlugin,
 } from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
@@ -44,6 +45,7 @@ Vue.use(ModalPlugin);
 Vue.use(ToastPlugin);
 Vue.use(OverlayPlugin);
 Vue.use(CarouselPlugin);
+Vue.use(TablePlugin);
 
 Vue.config.productionTip = false;
 
