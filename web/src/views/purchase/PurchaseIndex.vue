@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-md-2">
       <simple-card title="Filters">
-        <template #header> </template>
+        <template #header>
+          <purchase-filters />
+        </template>
       </simple-card>
     </div>
 
@@ -24,7 +26,23 @@
             <template v-slot:[`cell(partner.full_name)`]="data">
               <b>{{ data.value }} </b>
             </template>
+
+            <template v-slot:[`cell(opportunity.priority)`]="data">
+              <span :class="`${priorityColor(data.value)}`">
+                Level {{ data.value }}</span
+              >
+            </template>
           </b-table>
+        </template>
+
+        <template #footer>
+          <b-pagination
+            class="float-right"
+            v-model="pagination.currentPage"
+            :total-rows="pagination.totalRows"
+            :per-page="pagination.perPage"
+            aria-controls="my-table"
+          ></b-pagination>
         </template>
       </simple-card>
     </div>
@@ -32,11 +50,14 @@
 </template>
 
 <script>
+import PurchaseFilters from "../../components/purchase/PurchaseFilters.vue";
 import CardStatus from "../../components/shared/CardStatus.vue";
 import SimpleCard from "../../components/shared/SimpleCard.vue";
 import { PurchaseService } from "../../services/api";
+import { purchasePriorityLevel } from "../../utils/PurchaseStatusUtils";
+
 export default {
-  components: { SimpleCard, CardStatus },
+  components: { SimpleCard, CardStatus, PurchaseFilters },
   data() {
     return {
       fieldsTable: [
@@ -45,6 +66,11 @@ export default {
         { key: "purchaseDate", label: "Date" },
         { key: "opportunity.priority", label: "Priority" },
       ],
+      pagination: {
+        currentPage: 1,
+        totalRows: 100,
+        perPage: 10,
+      },
       purchases: [],
     };
   },
@@ -56,6 +82,9 @@ export default {
       PurchaseService.all()
         .then((response) => (this.purchases = response.data))
         .catch((error) => console.log(error));
+    },
+    priorityColor(priority) {
+      return "badge text-white bg-" + purchasePriorityLevel(priority);
     },
   },
 };

@@ -20,6 +20,7 @@ import {
   OverlayPlugin,
   CarouselPlugin,
   TablePlugin,
+  PaginationPlugin
 } from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
@@ -46,6 +47,7 @@ Vue.use(ToastPlugin);
 Vue.use(OverlayPlugin);
 Vue.use(CarouselPlugin);
 Vue.use(TablePlugin);
+Vue.use(PaginationPlugin)
 
 Vue.config.productionTip = false;
 

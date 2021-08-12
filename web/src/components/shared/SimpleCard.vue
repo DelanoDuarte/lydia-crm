@@ -24,6 +24,7 @@ export default {
 <style scoped>
 .card {
   background-color: #fff;
+  border: none;
 }
 .card-content {
   padding: 5px;
