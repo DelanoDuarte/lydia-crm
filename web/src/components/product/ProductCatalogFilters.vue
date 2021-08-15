@@ -3,6 +3,7 @@
     <template #header>
       <div class="p-2">
         <div class="row g-3 p-2">
+          <label for="categoriesSelect">Categories</label>
           <select
             id="categoriesSelect"
             class="form-control"

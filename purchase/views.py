@@ -1,18 +1,17 @@
+from lydia.pagination import StandartResultPagination
 from purchase.models import Purchase
 from purchase.serializers import PurchaseCreateSerializer, PurchaseSerializer
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from rest_framework import status
+  
+class PurchaseList(ListAPIView):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerializer
+    pagination_class = StandartResultPagination
 
-# Create your views here.
-class PurchaseList(APIView):
-
-    def get(self, request: Request, format=None):
-        purchases = Purchase.objects.all()
-        serializer = PurchaseSerializer(purchases, many=True)
-        return Response(serializer.data) 
-    
     def post(self, request: Request, format=None):
         serializer = PurchaseCreateSerializer(data=request.data)
         if serializer.is_valid():

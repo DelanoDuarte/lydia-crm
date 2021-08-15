@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">Lydia</router-link>
       <button
@@ -60,20 +60,23 @@
               aria-expanded="false"
               >Configuration</a
             >
-            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-              <li>
-                <router-link
-                  class="dropdown-item"
-                  :to="{ name: 'product-category-index' }"
-                  >Product Category</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/about"
-                  >Partner Types</router-link
-                >
-              </li>
-            </ul>
+            <div
+              class="dropdown-menu"
+              aria-labelledby="dropdown01"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <router-link
+                class="dropdown-item"
+                :to="{ name: 'product-category-index' }"
+                >Product Category</router-link
+              >
+              <router-link class="dropdown-item" to="/about"
+                >Partner Types</router-link
+              >
+            </div>
           </li>
         </ul>
         <!-- <form class="d-flex">
