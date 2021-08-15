@@ -173,4 +173,10 @@ export const PurchaseService = {
       throw new Error(`PurchaseService ${error}`);
     });
   },
+
+  allByPage(page) {
+    return client.get(`${PURCHASE_RESOURCE}?page=${page}`).catch((error) => {
+      throw new Error(`PurchaseService ${error}`);
+    });
+  },
 };

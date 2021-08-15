@@ -42,6 +42,7 @@
             :total-rows="pagination.totalRows"
             :per-page="pagination.perPage"
             aria-controls="my-table"
+            v-on:change="onPageChange($event)"
           ></b-pagination>
         </template>
       </simple-card>
@@ -68,23 +69,31 @@ export default {
       ],
       pagination: {
         currentPage: 1,
-        totalRows: 100,
-        perPage: 10,
+        totalRows: 0,
+        perPage: 25,
       },
       purchases: [],
     };
   },
   mounted() {
-    this.load();
+    this.load(1);
   },
   methods: {
-    load() {
-      PurchaseService.all()
-        .then((response) => (this.purchases = response.data))
+    load(page) {
+      PurchaseService.allByPage(page)
+        .then((response) => {
+          this.purchases = response.data.results;
+          this.pagination.totalRows = response.data.count;
+          this.pagination.currentPage = page;
+        })
         .catch((error) => console.log(error));
     },
     priorityColor(priority) {
       return "badge text-white bg-" + purchasePriorityLevel(priority);
+    },
+
+    onPageChange(page) {
+      this.load(page);
     },
   },
 };

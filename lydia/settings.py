@@ -65,6 +65,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'lydia.pagination.StandartResultPagination'
+}
+
 ROOT_URLCONF = 'lydia.urls'
 
 TEMPLATES = [
