@@ -1,7 +1,7 @@
 from payment_mode.models import PaymentMode
 from django.db import models
 from partner.models import Partner
-from purchase.models import Purchase
+from purchase.models import Purchase, PurchaseStatus
 
 # Create your models here.
 class Payment(models.Model):
