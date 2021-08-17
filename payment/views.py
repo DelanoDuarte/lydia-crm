@@ -1,3 +1,4 @@
+from rest_framework.pagination import LimitOffsetPagination
 from payment.serializer import PaymentCreateSerializer, PaymentListSerializer
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView
@@ -11,6 +12,7 @@ from payment.models import Payment
 class PaymentList(ListAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentListSerializer
+    pagination_class = LimitOffsetPagination
 
     def post(self, request: Request):
         serializer = PaymentCreateSerializer(data=request.data)

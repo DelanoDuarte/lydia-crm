@@ -1,3 +1,4 @@
+from payment_mode.serializer import PaymentModeSerializer
 from payment_mode.models import PaymentMode
 from purchase.models import Purchase
 from partner.models import Partner
@@ -10,6 +11,7 @@ class PaymentListSerializer(serializers.ModelSerializer):
 
     partner = PartnerListSerializer(many=False)
     purchase = PurchaseSerializer(many=False)
+    mode = PaymentModeSerializer(many=False)
 
     class Meta:
         model = Payment

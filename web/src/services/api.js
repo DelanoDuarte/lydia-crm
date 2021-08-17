@@ -6,6 +6,7 @@ const PRODUCT_CATEGORY_RESOURCE = "/product-category/";
 const PRODUCT_RESOURCE = "/product/";
 const PURCHASE_OPPORTUNITY_RESOURCE = "/purchase-opportunity/";
 const PURCHASE_RESOURCE = "/purchase/";
+const PAYMENT_RESOURCE = "/payment/";
 
 export const client = axios.create({
   baseURL: "http://127.0.0.1:8000",
@@ -177,6 +178,16 @@ export const PurchaseService = {
   allByPage(page) {
     return client.get(`${PURCHASE_RESOURCE}?page=${page}`).catch((error) => {
       throw new Error(`PurchaseService ${error}`);
+    });
+  },
+};
+
+/** Payment */
+
+export const PaymentService = {
+  all(limit, offset) {
+    return client.get(`${PAYMENT_RESOURCE}?limit=${limit}&offset=${offset}`).catch((error) => {
+      throw new Error(`PaymentService ${error}`);
     });
   },
 };

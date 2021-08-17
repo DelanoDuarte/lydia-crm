@@ -102,7 +102,7 @@
         </div>
       </b-modal>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <simple-card title="Products">
         <template #content>
           <div class="float-right pt-1 pb-1">
@@ -128,6 +128,14 @@
           @products_changed="productsChanged($event)"
         />
       </b-modal>
+    </div>
+
+    <div class="col-md-2">
+      <simple-card title="Sub Total">
+        <template #footer>
+          <p>Total Amount</p>
+        </template>
+      </simple-card>
     </div>
   </div>
 </template>
