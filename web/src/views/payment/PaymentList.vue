@@ -63,7 +63,7 @@
                   :total-rows="pagination.totalRows"
                   :per-page="pagination.limit"
                   aria-controls="my-table"
-                  v-on:change="onPageChange($event)"
+                  v-on:change="load(pagination.limit, $event - 1)"
                 ></b-pagination>
               </div>
             </div>
