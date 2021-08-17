@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'purchase.apps.PurchaseConfig',
     'partner_type.apps.PartnerTypeConfig',
     'purchase_opportunity.apps.PurchaseOpportunityConfig',
-    'address.apps.AddressConfig'
+    'address.apps.AddressConfig',
+    'payment.apps.PaymentConfig',
+    'payment_mode.apps.PaymentModeConfig'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -65,9 +67,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'lydia.pagination.StandartResultPagination'
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'lydia.pagination.StandartResultPagination'
+# }
 
 ROOT_URLCONF = 'lydia.urls'
 

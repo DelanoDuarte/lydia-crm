@@ -51,6 +51,14 @@
               >Opportunity</router-link
             >
           </li>
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              :to="{ name: 'payment-list' }"
+              aria-current="page"
+              >Payment</router-link
+            >
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
