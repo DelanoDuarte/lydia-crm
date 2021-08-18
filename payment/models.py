@@ -1,7 +1,7 @@
 from payment_mode.models import PaymentMode
 from django.db import models
 from partner.models import Partner
-from purchase.models import Purchase, PurchaseStatus
+from purchase.models import Purchase
 
 # Create your models here.
 class Payment(models.Model):
@@ -15,3 +15,6 @@ class Payment(models.Model):
     mode = models.ForeignKey(PaymentMode, null=False, on_delete=models.PROTECT)
     purchase = models.ForeignKey(Purchase, null=False, on_delete=models.PROTECT)
     partner = models.ForeignKey(Partner, null=False, on_delete=models.PROTECT)
+
+    def __str__(self) -> str:
+        return f'{self.paymentNumber}'

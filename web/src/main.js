@@ -20,7 +20,7 @@ import {
   OverlayPlugin,
   CarouselPlugin,
   TablePlugin,
-  PaginationPlugin
+  PaginationPlugin,
 } from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
@@ -30,6 +30,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import "jquery/src/jquery.js";
 import "offcanvas";
 import "animate.css";
+import "vue-multiselect/dist/vue-multiselect.min.css";
 
 library.add(faUserCircle);
 library.add(faEllipsisV);
@@ -47,7 +48,7 @@ Vue.use(ToastPlugin);
 Vue.use(OverlayPlugin);
 Vue.use(CarouselPlugin);
 Vue.use(TablePlugin);
-Vue.use(PaginationPlugin)
+Vue.use(PaginationPlugin);
 
 Vue.config.productionTip = false;
 

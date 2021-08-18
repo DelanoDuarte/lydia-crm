@@ -180,14 +180,24 @@ export const PurchaseService = {
       throw new Error(`PurchaseService ${error}`);
     });
   },
+
+  allByPartner(partner_id) {
+    return client
+      .get(`${PURCHASE_RESOURCE}partner/${partner_id}`)
+      .catch((error) => {
+        throw new Error(`PurchaseService ${error}`);
+      });
+  },
 };
 
 /** Payment */
 
 export const PaymentService = {
   all(limit, offset) {
-    return client.get(`${PAYMENT_RESOURCE}?limit=${limit}&offset=${offset}`).catch((error) => {
-      throw new Error(`PaymentService ${error}`);
-    });
+    return client
+      .get(`${PAYMENT_RESOURCE}?limit=${limit}&offset=${offset}`)
+      .catch((error) => {
+        throw new Error(`PaymentService ${error}`);
+      });
   },
 };
