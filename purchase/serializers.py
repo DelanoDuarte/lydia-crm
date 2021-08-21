@@ -24,7 +24,8 @@ class PurchaseSerializer(serializers.ModelSerializer):
             'comments',
             'partner',
             'products',
-            'opportunity'
+            'opportunity',
+            'amount'
         )
 
 class PurchaseCreateSerializer(serializers.ModelSerializer):
@@ -32,16 +33,21 @@ class PurchaseCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model=Purchase
         fields=(
+            "purchaseDate",
             "comments",
             "status",
             "products",
-            "partner"
+            "partner",
+            "amount"
         )
 
     def create(self, validated_data: Dict):
         products_data = validated_data.pop('products')
+        purchase: Purchase
         purchase = Purchase.objects.create(**validated_data)
         if products_data:
             for product in products_data:
                 purchase.products.add(product)
+                
+        purchase.calculate_product_total_amount()
         return purchase

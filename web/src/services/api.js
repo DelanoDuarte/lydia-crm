@@ -7,6 +7,7 @@ const PRODUCT_RESOURCE = "/product/";
 const PURCHASE_OPPORTUNITY_RESOURCE = "/purchase-opportunity/";
 const PURCHASE_RESOURCE = "/purchase/";
 const PAYMENT_RESOURCE = "/payment/";
+const PAYMENT_MODE_RESOURCE = "/payment-mode/";
 
 export const client = axios.create({
   baseURL: "http://127.0.0.1:8000",
@@ -199,5 +200,13 @@ export const PaymentService = {
       .catch((error) => {
         throw new Error(`PaymentService ${error}`);
       });
+  },
+};
+
+export const PaymentModeService = {
+  all() {
+    return client.get(`${PAYMENT_MODE_RESOURCE}`).catch((error) => {
+      throw new Error(`PaymentModeService ${error}`);
+    });
   },
 };

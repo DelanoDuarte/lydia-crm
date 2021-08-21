@@ -11,6 +11,7 @@ import {
   faUserCircle,
   faPlus,
   faCheckCircle,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -36,6 +37,7 @@ library.add(faUserCircle);
 library.add(faEllipsisV);
 library.add(faPlus);
 library.add(faCheckCircle);
+library.add(faSearch);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("multiselect", Multiselect);

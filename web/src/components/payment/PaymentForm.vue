@@ -56,7 +56,28 @@
           :close-on-select="true"
           :options-limit="10"
           :limit="3"
-        ></multiselect>
+        >
+          <template slot="singleLabel" slot-scope="props"
+            ><span class="option__desc"
+              ><span class="option__title"
+                >{{ props.option.partner.full_name }}
+              </span>
+              <span class="option__small"
+                >{{ props.option.purchaseDate }}
+              </span>
+            </span></template
+          >
+
+          <template slot="option" slot-scope="props">
+            <div class="option__desc">
+              <span class="option__title"
+                >{{ props.option.partner.full_name }} </span
+              ><span class="option__small"
+                >{{ props.option.purchaseDate }}
+              </span>
+            </div>
+          </template>
+        </multiselect>
       </div>
     </div>
 
@@ -108,6 +129,7 @@ export default {
         .catch((error) => console.error(error));
     },
 
+    /** Get the Purchases of the Partner */
     onSelectPartner(partner) {
       this.purchases = [];
       if (partner) {

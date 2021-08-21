@@ -22,7 +22,7 @@ export const purchasePriorityLevel = (priority) => {
       case 3:
         return "danger";
       default:
-        priority;
+        return "primary";
     }
   }
 };
