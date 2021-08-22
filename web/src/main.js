@@ -11,6 +11,7 @@ import {
   faUserCircle,
   faPlus,
   faCheckCircle,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -20,7 +21,7 @@ import {
   OverlayPlugin,
   CarouselPlugin,
   TablePlugin,
-  PaginationPlugin
+  PaginationPlugin,
 } from "bootstrap-vue";
 import Multiselect from "vue-multiselect";
 
@@ -30,11 +31,13 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import "jquery/src/jquery.js";
 import "offcanvas";
 import "animate.css";
+import "vue-multiselect/dist/vue-multiselect.min.css";
 
 library.add(faUserCircle);
 library.add(faEllipsisV);
 library.add(faPlus);
 library.add(faCheckCircle);
+library.add(faSearch);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("multiselect", Multiselect);
@@ -47,7 +50,7 @@ Vue.use(ToastPlugin);
 Vue.use(OverlayPlugin);
 Vue.use(CarouselPlugin);
 Vue.use(TablePlugin);
-Vue.use(PaginationPlugin)
+Vue.use(PaginationPlugin);
 
 Vue.config.productionTip = false;
 

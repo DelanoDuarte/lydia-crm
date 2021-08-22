@@ -18,3 +18,11 @@ class PurchaseList(ListAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PurchaseByPartner(APIView):
+
+    # Partner id
+    def get(self, request: Request, id: int):
+        purchases = Purchase.objects.filter(partner__id=id).all()
+        serializer = PurchaseSerializer(purchases, many=True)
+        return Response(data=serializer.data)

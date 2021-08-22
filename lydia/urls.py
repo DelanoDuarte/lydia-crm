@@ -28,4 +28,5 @@ urlpatterns = [
     path('partner-type/', include('partner_type.urls')),
     path('purchase-opportunity/', include('purchase_opportunity.urls')),
     path('payment/', include('payment.urls')),
+    path('payment-mode/', include('payment_mode.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
