@@ -3,13 +3,23 @@
     <div class="form-row bt-1">
       <div class="form-group col-md-4">
         <label for="paymentDate" class="font-weight-bold">Date</label>
-        <input type="date" class="form-control" id="paymentDate" />
+        <input
+          type="date"
+          class="form-control"
+          v-model="payment.paymentDate"
+          id="paymentDate"
+        />
       </div>
       <div class="form-group col-md-4">
         <label for="paymentNumber" class="font-weight-bold"
           >Payment Number</label
         >
-        <input type="text" class="form-control" id="paymentNumber" />
+        <input
+          type="text"
+          class="form-control"
+          v-model="payment.paymentNumber"
+          id="paymentNumber"
+        />
       </div>
     </div>
 
@@ -19,7 +29,6 @@
         <multiselect
           v-model="payment.partner"
           open-direction="bottom"
-          value="id"
           :options="partners"
           :custom-label="partnerName"
           placeholder="Select Partner"
@@ -42,7 +51,6 @@
         <multiselect
           v-model="payment.purchase"
           open-direction="bottom"
-          value="id"
           :options="purchases"
           :custom-label="purchaseLabel"
           placeholder="Select Purchase"
@@ -60,10 +68,11 @@
           <template slot="singleLabel" slot-scope="props"
             ><span class="option__desc"
               ><span class="option__title"
-                >{{ props.option.partner.full_name }}
+                >{{ props.option.partner.full_name }} -
+                {{ props.option.purchaseDate }}
               </span>
-              <span class="option__small"
-                >{{ props.option.purchaseDate }}
+              <span class="option__small">
+                ( € {{ props.option.amount }} )
               </span>
             </span></template
           >
@@ -71,9 +80,11 @@
           <template slot="option" slot-scope="props">
             <div class="option__desc">
               <span class="option__title"
-                >{{ props.option.partner.full_name }} </span
-              ><span class="option__small"
-                >{{ props.option.purchaseDate }}
+                >{{ props.option.partner.full_name }} -
+                {{ props.option.purchaseDate }}
+              </span>
+              <span class="option__small">
+                ( € {{ props.option.amount }} )
               </span>
             </div>
           </template>
@@ -84,32 +95,69 @@
     <div class="form-row bt-1">
       <div class="form-group col-md-4">
         <label for="paymentAmount" class="font-weight-bold">Amount</label>
-        <input type="number" class="form-control" id="paymentAmount" />
+        <input
+          type="number"
+          class="form-control"
+          v-model="payment.amount"
+          id="paymentAmount"
+        />
       </div>
       <div class="form-group col-md-4">
         <label for="paymentMode" class="font-weight-bold">Payment Mode</label>
+        <multiselect
+          v-model="payment.mode"
+          open-direction="bottom"
+          :options="paymentModes"
+          :custom-label="paymentModelLabel"
+          placeholder="Select Payment Mode"
+          track-by="id"
+          :multiple="false"
+          :searchable="true"
+          :internal-search="true"
+          :clear-on-select="true"
+          :close-on-select="true"
+        >
+        </multiselect>
       </div>
     </div>
   </form>
 </template>
 
 <script>
-import { PartnerService, PurchaseService } from "../../services/api";
+import {
+  PartnerService,
+  PaymentModeService,
+  PurchaseService,
+} from "../../services/api";
 export default {
   data() {
     return {
       partners: [],
       purchases: [],
+      paymentModes: [],
       isPartnerSearchLoading: false,
       isPurchaseSearchLoading: false,
       isPurchaseSelectDisabled: true,
       payment: {
+        paymentNumber: undefined,
+        paymentDate: undefined,
         partner: undefined,
         purchase: undefined,
+        mode: undefined,
+        amount: undefined,
       },
     };
   },
+  mounted() {
+    this.load();
+  },
   methods: {
+    load() {
+      PaymentModeService.all()
+        .then((response) => (this.paymentModes = response.data))
+        .catch((error) => console.log(error));
+    },
+
     partnerName({ full_name }) {
       if (full_name) {
         return `${full_name}`;
@@ -119,6 +167,10 @@ export default {
       if (status) {
         return `${status} - (${purchaseDate}) - ${partner.full_name}`;
       }
+    },
+
+    paymentModelLabel({ name }) {
+      return `${name}`;
     },
 
     searchPartner(query) {

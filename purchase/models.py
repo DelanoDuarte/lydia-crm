@@ -33,3 +33,4 @@ class Purchase(models.Model):
         products = self.products.all()
         total = sum(map(lambda p: p.unit_price, products))
         self.amount = total
+        self.save()

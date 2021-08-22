@@ -201,6 +201,12 @@ export const PaymentService = {
         throw new Error(`PaymentService ${error}`);
       });
   },
+
+  create(payment) {
+    return client.post(`${PAYMENT_RESOURCE}`, payment).catch((error) => {
+      throw new Error(`PaymentService ${error}`);
+    });
+  },
 };
 
 export const PaymentModeService = {
