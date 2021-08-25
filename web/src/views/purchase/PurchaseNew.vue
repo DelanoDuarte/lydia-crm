@@ -22,6 +22,28 @@
             <purchase-form />
           </template>
         </simple-card>
+
+        <simple-card title="Products">
+          <template #content>
+            <simple-card v-for="p in products" :key="p">
+              <template #content>
+                <purchase-new-add-product
+                  :products="products"
+                  v-on:remove_product="removeProduct($event)"
+                  v-on:search_product="searchProduct"
+                />
+              </template>
+            </simple-card>
+          </template>
+          <template #footer>
+            <button
+              class="btn btn-success btn-sm float-right"
+              @click.prevent="add"
+            >
+              Add
+            </button>
+          </template>
+        </simple-card>
       </div>
     </div>
   </div>
@@ -29,11 +51,32 @@
 
 <script>
 import PurchaseForm from "../../components/purchase/PurchaseForm.vue";
+import PurchaseNewAddProduct from "../../components/purchase/PurchaseNewAddProduct.vue";
 import SimpleCard from "../../components/shared/SimpleCard.vue";
 export default {
-  components: { SimpleCard, PurchaseForm },
+  components: { SimpleCard, PurchaseForm, PurchaseNewAddProduct },
+  data() {
+    return {
+      isProductLoading: false,
+      product: {
+        name: undefined,
+        price: undefined,
+      },
+      products: [],
+    };
+  },
   methods: {
     create() {},
+    add() {
+      const product = {};
+      this.products.push(product);
+    },
+    removeProduct(index) {
+      const index_arr = this.products[index];
+      if (index_arr) {
+        this.products.splice(index, 1);
+      }
+    },
   },
 };
 </script>

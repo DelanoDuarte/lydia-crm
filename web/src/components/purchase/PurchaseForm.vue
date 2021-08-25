@@ -16,7 +16,6 @@
           v-model="purchase.partner"
           open-direction="bottom"
           :options="partners"
-          :custom-label="partnerName"
           placeholder="Select Partner"
           label="full_name"
           track-by="id"
@@ -32,6 +31,8 @@
         ></multiselect>
       </div>
     </div>
+
+    <div class="form-row bt-1"></div>
   </form>
 </template>
 
