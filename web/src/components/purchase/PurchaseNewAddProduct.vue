@@ -19,6 +19,7 @@
           :options-limit="10"
           :limit="3"
           @search-change="searchProduct"
+          @select="onSelectProduct"
         ></multiselect>
       </div>
     </div>
@@ -27,7 +28,7 @@
       class="btn btn-danger btn-sm"
       @click.prevent="$emit('remove_product', index)"
     >
-      Remove
+      <font-awesome-icon icon="trash" />
     </button>
   </div>
 </template>
@@ -35,7 +36,6 @@
 <script>
 import { ProductService } from "../../services/api";
 export default {
-  props: { products: [] },
   data() {
     return {
       isProductLoading: false,
@@ -50,6 +50,9 @@ export default {
         .then((response) => (this.productOptions = response.data))
         .then(() => (this.isProductLoading = false))
         .catch((error) => console.log(error));
+    },
+    onSelectProduct(product) {
+      this.$emit("product_selected", product);
     },
   },
 };

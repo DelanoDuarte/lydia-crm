@@ -25,12 +25,12 @@
 
         <simple-card title="Products">
           <template #content>
-            <simple-card v-for="p in products" :key="p">
+            <simple-card v-for="(p, index) in products" :key="index">
               <template #content>
                 <purchase-new-add-product
-                  :products="products"
-                  v-on:remove_product="removeProduct($event)"
+                  v-on:remove_product="removeProduct(index)"
                   v-on:search_product="searchProduct"
+                  v-on:product_selected="onSelectProduct(index, $event)"
                 />
               </template>
             </simple-card>
@@ -76,6 +76,9 @@ export default {
       if (index_arr) {
         this.products.splice(index, 1);
       }
+    },
+    onSelectProduct(index, product) {
+      this.products[index] = product;
     },
   },
 };
