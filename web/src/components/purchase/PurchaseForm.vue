@@ -32,7 +32,16 @@
       </div>
     </div>
 
-    <div class="form-row bt-1"></div>
+    <div class="form-row bt-1">
+      <div class="col-8">
+        <label for="inputComments" class="form-label">Comments</label>
+        <textarea
+          class="form-control form-control-sm"
+          v-model="purchase.comments"
+          id="inputComments"
+        />
+      </div>
+    </div>
   </form>
 </template>
 
@@ -46,6 +55,7 @@ export default {
       purchase: {
         purchaseDate: undefined,
         products: [],
+        comments: undefined,
         partner: undefined,
         status: undefined,
       },

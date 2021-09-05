@@ -29,7 +29,9 @@ class PurchaseSerializer(serializers.ModelSerializer):
         )
 
 class PurchaseCreateSerializer(serializers.ModelSerializer):
-    status = serializers.CharField(required=False)    
+    status = serializers.CharField(required=False)
+    comments = serializers.CharField(required=False)
+    amount = serializers.DecimalField(required=True, max_digits=6, decimal_places=2)
     class Meta:
         model=Purchase
         fields=(
