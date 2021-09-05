@@ -13,7 +13,7 @@
     <div class="row d-grid gap-2 p-2">
       <router-link
         class="btn btn-success btn-sm btn-block"
-        :to="{ name: 'purchase-index' }"
+        :to="{ name: 'purchase-new' }"
         >New Purchase</router-link
       >
       <button class="btn btn-secondary btn-sm btn-block" type="button">

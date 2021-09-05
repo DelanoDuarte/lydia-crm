@@ -7,6 +7,7 @@ import { product_categories_routes } from "../views/product-category/routes";
 import { payment_routes } from "../views/payment/routes";
 
 import PurchaseIndex from "@/views/purchase/PurchaseIndex.vue";
+import PurchaseNew from "@/views/purchase/PurchaseNew.vue";
 import ProductCatalog from "@/views/product-catalog/ProductCatalog.vue";
 
 const product_routes = [
@@ -22,6 +23,11 @@ const purchase_routes = [
     path: "/purchase",
     name: "purchase-index",
     component: PurchaseIndex,
+  },
+  {
+    path: "/purchase/new",
+    name: "purchase-new",
+    component: PurchaseNew,
   },
 ];
 

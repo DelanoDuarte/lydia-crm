@@ -189,6 +189,12 @@ export const PurchaseService = {
         throw new Error(`PurchaseService ${error}`);
       });
   },
+
+  create(purchase) {
+    return client.post(`${PURCHASE_RESOURCE}`, purchase).catch((error) => {
+      throw new Error(`PurchaseService ${error}`);
+    });
+  },
 };
 
 /** Payment */
